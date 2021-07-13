@@ -2,11 +2,10 @@
 	// Include config file
 	require_once 'config/config.php';
 
-
 	// Define variables and initialize with empty values
-	$username = $password = $confirm_password = "";
+	$username = $password = $confirm_password = $nickname = "";
 
-	$username_err = $password_err = $confirm_password_err = "";
+	$username_err = $password_err = $confirm_password_err = $nickname_err =  "";
 
 	// Process submitted form data
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -52,6 +51,13 @@
 			}
 		}
 
+		if (empty(trim($_POST['nickname']))) {
+			$nickname_err = "Insira seu nickname!";
+		}
+		else{
+	        $nickname = trim($_POST["nickname"]);
+	    }
+
 		// Validate password
 	    if(empty(trim($_POST["password"]))){
 	        $password_err = "Insira uma Senha!";     
@@ -73,19 +79,20 @@
 
 	    // Check input error before inserting into database
 
-	    if (empty($username_err) && empty($password_err) && empty($confirm_err)) {
+	    if (empty($username_err) && empty($password_err) && empty($confirm_err) && empty($nickname_err)) {
 
 	    	// Prepare insert statement
-			$sql = 'INSERT INTO users (username, password) VALUES (?,?)';
+			$sql = 'INSERT INTO users (username, password, nickname) VALUES (?,?,?)';
 
 			if ($stmt = $mysql_db->prepare($sql)) {
 
 				// Set parmater
 				$param_username = $username;
-				$param_password = password_hash($password, PASSWORD_DEFAULT); // Created a password
+				$param_password = password_hash($password, PASSWORD_DEFAULT);
+				$param_nickname = $nickname;
 
 				// Bind param variable to prepares statement
-				$stmt->bind_param('ss', $param_username, $param_password);
+				$stmt->bind_param('sss', $param_username, $param_password, $param_nickname);
 
 				// Attempt to execute
 				if ($stmt->execute()) {
@@ -131,6 +138,12 @@
         			<label for="username">Nome de Usuário:</label>
         			<input type="text" name="username" id="username" class="form-control" value="<?php echo $username ?>">
         			<span class="help-block"><?php echo $username_err;?></span>
+        		</div>
+
+				<div class="form-group <?php (!empty($nickname_err))?'has_error':'';?>">
+        			<label for="nickname">Nickname:</label>
+        			<input type="text" name="nickname" id="nickname" class="form-control" value="<?php echo $nickname ?>">
+        			<span class="help-block"><?php echo $nickname_err;?></span>
         		</div>
 
         		<div class="form-group <?php (!empty($password_err))?'has_error':'';?>">
