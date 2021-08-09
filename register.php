@@ -5,7 +5,7 @@
 	// Define variables and initialize with empty values
 	$username = $password = $confirm_password = $nickname = "";
 
-	$username_err = $password_err = $confirm_password_err = $nickname_err =  "";
+	$username_err = $password_err = $confirm_password_err = $nickname_err = "";
 
 	// Process submitted form data
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -52,7 +52,7 @@
 		}
 
 		if (empty(trim($_POST['nickname']))) {
-			$nickname_err = "Insira seu nickname!";
+			$nickname_err = "Insira seu Nickname!";
 		}
 		else{
 	        $nickname = trim($_POST["nickname"]);

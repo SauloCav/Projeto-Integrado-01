@@ -35,7 +35,7 @@
     // Validate credentials
     if (empty($username_err) && empty($password_err)) {
       // Prepare a select statement
-      $sql = 'SELECT id_user, username, password FROM users WHERE username = ?';
+      $sql = 'SELECT id_user, username, password, nickname FROM users WHERE username = ?';
 
       if ($stmt = $mysql_db->prepare($sql)) {
 
@@ -54,7 +54,7 @@
           // Check if username exists. Verify user exists then verify
           if ($stmt->num_rows == 1) {
             // Bind result into variables
-            $stmt->bind_result($id_user, $username, $hashed_password);
+            $stmt->bind_result($id_user, $username, $hashed_password, $nickname);
 
             if ($stmt->fetch()) {
               if (password_verify($password, $hashed_password)) {
@@ -66,6 +66,7 @@
                 $_SESSION['loggedin'] = true;
                 $_SESSION['id_user'] = $id_user;
                 $_SESSION['username'] = $username;
+                $_SESSION['nickname'] = $nickname;
 
                 // Redirect to user to page
                 header('location: welcome.php');

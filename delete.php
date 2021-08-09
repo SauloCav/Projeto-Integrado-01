@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $sql = "DELETE FROM users WHERE id_user = $param_id";
 
     if (mysqli_query($mysql_db, $sql)) {
-        echo "Record deleted successfully";
+        echo "Deletado com sucesso!";
         session_destroy();
         header("location: index.php");
         exit();
