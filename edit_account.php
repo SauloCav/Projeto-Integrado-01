@@ -84,7 +84,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
     // Check input errors before updating the database
     if(empty($new_password_err) && empty($confirm_password_err) && empty($new_username_err) && empty($new_nickname_err)){
-        // Prepare an update statement
+
         $param_username = $new_username;
         $param_password = password_hash($new_password, PASSWORD_DEFAULT);
         $param_nickname = $new_nickname;
@@ -112,49 +112,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $mysql_db->close();
     }
 
-    /*$sql = 'UPDATE users SET password = ? WHERE id_user = ?';
-        
-        if($stmt = $mysql_db->prepare($sql)){
-            // Set parameters
-            $param_password = password_hash($new_password, PASSWORD_DEFAULT);
-            $param_id = $_SESSION["id_user"];
-
-            // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("si", $param_password, $param_id);
-             */
-
-    /*if(empty($new_password_err) && empty($confirm_password_err) && empty($new_username_err) && empty($new_nickname_err)){
-        // Prepare an update statement
-        $sql = 'UPDATE users SET username = ?, password = ?, nickname = ? WHERE id_user = ?';
-        
-        if($stmt = $mysql_db->prepare($sql)){
-            // Set parameters
-            $param_username = $new_username;
-            $param_password = password_hash($new_password, PASSWORD_DEFAULT);
-            $param_nickname = $new_nickname;
-            $param_id = $_SESSION["id_user"];
-
-            // Bind variables to the prepared statement as parameters
-            $stmt->bind_param($param_username, $param_password, $param_nickname, $param_id);
-            
-            // Attempt to execute the prepared statement
-            if($stmt->execute()){
-                // Password updated successfully. Destroy the session, and redirect to login page
-                session_destroy();
-                header("location: index.php");
-                exit();
-            } else{
-                echo "Oops! Algo deu errado, tente novamente mais tarde!";
-            }
-
-            // Close statement
-            $stmt->close();
-        }
-
-        // Close connection
-        $mysql_db->close();
-    }*/
-
 }
 ?>
  
@@ -167,7 +124,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <style type="text/css">
         .wrapper{ 
             width: 500px; 
-            padding: 20px; 
+        	padding: 20px;  
         }
         .wrapper h2 {text-align: center}
         .wrapper form .form-group span {color: red;}

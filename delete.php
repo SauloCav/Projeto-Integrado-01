@@ -31,12 +31,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reset Password</title>
+    <title>Deletar Conta</title>
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
     <style type="text/css">
         .wrapper{ 
             width: 500px; 
-            padding: 20px; 
+        	padding: 20px;  
         }
         .wrapper h2 {text-align: center}
         .wrapper form .form-group span {color: red;}
@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
                 <div class="form-group">
                     <input type="submit" class="btn btn-block btn-primary" value="Sim">
-                    <a class="btn btn-block btn-link bg-light" href="welcome.php">Cancelar</a>
+                    <a class="btn btn-block btn-link bg-light" href="edit_account.php">Cancelar</a>
                 </div>
             </form>
         </section>
