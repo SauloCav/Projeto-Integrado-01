@@ -50,26 +50,18 @@
             $param_resposta_b = $resposta_b;
             $param_resposta_c = $resposta_c;
 
-			$sqlquest = "INSERT INTO questoes (pergunta, resp_a, resp_b, resp_c , valida) VALUES ('$param_questao', '$param_resposta_a', '$param_resposta_b', '$param_resposta_c', 'i')";
+			$sql = "INSERT INTO questoes_respostas (pergunta, resp_correta, resp_a, resp_b, resp_c, valida) VALUES ('$param_questao', '$param_resposta_certa', '$param_resposta_a', '$param_resposta_b', '$param_resposta_c', 'i')";
 
-			if ($stmt = $mysql_db->prepare($sqlquest)) {
+			if ($stmt = $mysql_db->prepare($sql)) {
 
 				if ($stmt->execute()) {
                     
-                    $param_id_resp = mysqli_insert_id($mysql_db);
+                    if ($stmt = $mysql_db->prepare($sql)) {
 
-                    $sqlresp = "INSERT INTO resposta_correta (resp_correta, id_quest) VALUES ('$param_resposta_certa', '$param_id_resp')";
-
-                    if ($stmt = $mysql_db->prepare($sqlresp)) {
-
-                        if ($stmt->execute()) {
-                    
-                            if ($stmt = $mysql_db->prepare($sqlquest)) {
-                                header('location: ./question_board.php');
-                            }   
-                            } else {
-                                echo "Algo deu errado, Tente Novamente!";
-                            }
+                        header('location: ./question_board.php');
+                    }   
+                    else {
+                        echo "Algo deu errado, Tente Novamente!";
                     }
 						
 				} else {
@@ -78,9 +70,9 @@
 
 				$stmt->close();	
 			}
-
 			$mysql_db->close();
 	    }
+        
 	}
 ?>
  
