@@ -1,3 +1,9 @@
+<?php
+
+	session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +31,8 @@
         <img src="../img/8fa579722662ef6754b064f8a71c6d9d.jpg" alt="Error" width="100%">
     </section>
     <div class="container wrapper">
-        <button class="btn btn-primary">Jogar novamente</button> 
-        <button class="btn btn-danger">Sair</button>
+        <a href="init.php" class="btn btn-block btn btn-outline-dark">Reiniciar</a>
+        <a href="../welcome.php" class="btn btn-block btn-link bg-light">Sair</a>
     </div>
 </body>
 </html>

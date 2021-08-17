@@ -30,7 +30,7 @@
 				<h1 class="display-5">Bem Vindo ao Show do Milhão <?php echo $_SESSION['nickname']; ?></h1>
 			</div>
 
-			<a class="btn btn-block btn btn-outline-success" href="welcome.php">Jogar</a>
+			<a href="./Game/init.php" class="btn btn-block btn btn-outline-success">Jogar</a>
 			<a href="edit_account.php" class="btn btn-block btn-outline-warning">Editar Conta</a>
 			<a href="question_board.php" class="btn btn-block btn btn-outline-info">Painel de Perguntas</a>
 			<a class="btn btn-block btn btn btn-outline-primary" href="welcome.php">Hall da Fama</a>

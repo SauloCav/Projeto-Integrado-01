@@ -1,8 +1,14 @@
+<?php
+
+	session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Painel de Questões</title>
+	<title>Jogo</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
 	<style>
         .wrapper{ 
@@ -17,11 +23,14 @@
 	<main>
 		<section class="container wrapper">
 			<div class="page-header">
-				<h1>Painel de Questões</h1>
+				<h1 class="display-5">06 <?php echo $_SESSION['nickname']; ?></h1>
 			</div>
-            <a href="question_list.php" class="btn btn-block btn btn btn-outline-primary">Banco/Edição de Questões</a>
-			<a href="add_question.php" class="btn btn-block btn btn-outline-info">Adicionar uma Pergunta</a>
-            <a class="btn btn-block btn-link bg-light" href="welcome.php">Sair</a>
+
+			<a href="Quest_07.php" class="btn btn-block btn btn-outline-success">07</a>
+            <a href="playerOver.php" class="btn btn-block btn btn-outline-success">Derrota</a>
+            <a href="playerWin.php" class="btn btn-block btn btn-outline-success">Vitória</a>
+            <a href="../welcome.php" class="btn btn-block btn-link bg-light">Sair</a>
+
 		</section>
 	</main>
 </body>

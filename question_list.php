@@ -28,12 +28,14 @@
 		<section class="container wrapper">
 			<div class="page-header">
 				<h1 class="display-5">Lista de Perguntas Adicionadas</h1>
+				<a class="btn btn-block btn-link bg-light" href="question_board.php">Sair</a>
+				<br>
 			</div>
 
 			<table border="1"> 
 				<tr> 
 					<td>Questão:</td> 
-					<td>Resposta Correta 01:</td> 
+					<td>Resposta Correta:</td> 
 					<td>Resposta Incorreta 01:</td> 
 					<td>Resposta Incorreta 02:</td> 
 					<td>Resposta Incorreta 03:</td> 
@@ -43,20 +45,25 @@
 				<tr> 
 					<td><?php echo $dado['pergunta']; ?></td>
 					<td><?php echo $dado['resp_correta']; ?></td> 
-					<td><?php echo $dado['resp_a']; ?></td> 
-					<td><?php echo $dado['resp_b']; ?></td> 
-					<td><?php echo $dado['resp_c']; ?></td> 
-					<td><?php echo $dado['valida']; ?></td> 
-					<td> <a href="questoes_editar.php?codigo=<?php echo $dado['usu_codigo']; ?>">Editar</a> </td> 
-					<td> <a href="questoes_excluir.php?codigo=<?php echo $dado['usu_codigo']; ?>">Excluir</a> </td> 
-					<td> <a href="questoes_validar.php?codigo=<?php echo $dado['usu_codigo']; ?>">Validar</a> </td> 
-					<td> <a href="questoes_validar.php?codigo=<?php echo $dado['usu_codigo']; ?>">Denunciar</a> </td> 
+					<td><?php echo $dado['resp_a']; ?></td>
+					<td><?php echo $dado['resp_b']; ?></td>
+					<td><?php echo $dado['resp_c']; ?></td>
+					<td><?php echo $dado['valida']; ?></td>
+
+					<td><?php if ($dado['valida'] === 'i') {
+						echo "<a href='./Question_Operations/edit_quest.php" . "'> Editar </a>";
+					}
+					else {
+						echo "<a href='./Question_Operations/invalidate_quest.php" . "'> Denunciar </a>";
+					} ?></td> 
+
+					<td> <a href="./Question_Operations/delete_quest.php">Excluir</a> </td> 
+
+					<!--<td> <a href="questoes_editar.php?codigo= <//?php echo $dado['usu_codigo']; ?>">Editar</a> </td>-->
+
 				</tr> 
 				<?php } ?> 
-			</table>
-				
-			<br/>
-			<a class="btn btn-block btn-link bg-light" href="question_board.php">Sair</a>
+			</table>	
 
 		</section>
 	</main>
