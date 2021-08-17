@@ -41,14 +41,14 @@
 					<td>Resposta Incorreta 03:</td> 
 					<td>(Válida(v)  Inválida(I))</td> 
 				</tr> 
-				<?php while($dado = $cons->fetch_array()) { ?> 
+				</td><?php while($dado = $cons->fetch_array()) { ?> 
 				<tr> 
 					<td><?php echo $dado['pergunta']; ?></td>
 					<td><?php echo $dado['resp_correta']; ?></td> 
 					<td><?php echo $dado['resp_a']; ?></td>
 					<td><?php echo $dado['resp_b']; ?></td>
 					<td><?php echo $dado['resp_c']; ?></td>
-					<td><?php echo $dado['valida']; ?></td>
+					<td><?php echo $dado['valida']; ?>
 
 					<td><?php if ($dado['valida'] === 'i') {
 						echo "<a href='./Question_Operations/edit_quest.php" . "'> Editar </a>";

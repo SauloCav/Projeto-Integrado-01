@@ -2,6 +2,12 @@
 
 	session_start();
 
+	include 'linked_list.php';
+
+	require_once '../config/config.php';
+
+	$MyList->PrintList(4);
+
 ?>
 
 <!DOCTYPE html>

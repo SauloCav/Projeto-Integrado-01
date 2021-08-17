@@ -2,6 +2,10 @@
 
 	session_start();
 
+	include 'linked_list.php';
+
+	require_once '../config/config.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +31,7 @@
 			</div>
 
 			<a href="Quest_02.php" class="btn btn-block btn btn-outline-success">02</a>
-            <a href="playerOver.php" class="btn btn-block btn btn-outline-success">Derrota</a>
-            <a href="playerWin.php" class="btn btn-block btn btn-outline-success">Vitória</a>
+			<?php $MyList->PrintList(0); ?>
             <a href="../welcome.php" class="btn btn-block btn-link bg-light">Sair</a>
 
 		</section>
