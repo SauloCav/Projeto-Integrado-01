@@ -33,7 +33,8 @@
 				<h1 class="display-5">Pergunta 06</h1>
 			</div>
 			
-			<?php $MyList->PrintList(5); ?>
+			<?php $obj = $MyList->findObject(5); ?>
+			<?php var_dump ($obj); ?>
 			<a href="Quest_07.php" class="btn btn-block btn btn-outline-success">Proximo</a>
             <a href="../welcome.php" class="btn btn-block btn-link bg-light">Parar</a>
 			<div id="prize">

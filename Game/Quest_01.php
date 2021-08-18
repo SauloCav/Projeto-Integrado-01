@@ -33,7 +33,37 @@
 				<h1 class="display-5">Pergunta 01</h1>
 			</div>
 
-			<?php $MyList->PrintList(0); ?>
+			<?php $obj = $MyList->findObject(0); ?>
+
+			<?php
+				if(array_key_exists('buttom', $_POST)) {
+					wrongAnswer();
+				}
+				elseif (array_key_exists('buttomCorrect', $_POST)) {
+					correctAnswer();
+				}
+				function correctAnswer() {
+						header('location: Quest_02.php');
+				}
+				function wrongAnswer() {
+					header('location: playerOver.php');
+				}
+			?>
+
+			<h5 class="display-5">Id da Questão: <?php echo "$obj[0]";?> </h5>
+			<h3 style="text-align: center;" class="display-5"><strong> <?php echo "$obj[1]";?> </strong></h3>
+
+			<form method="post">
+				<input type='submit' name='buttomCorrect' 
+					class='btn btn-block btn-outline-warning' value= '<?php echo "$obj[2]";?>' />
+				<input type='submit' name='buttom' 
+					class='btn btn-block btn btn-outline-info' value= '<?php echo "$obj[3]";?>' />
+				<input type='submit' name='buttom' 
+					class='btn btn-block btn btn btn-outline-primary' value= '<?php echo "$obj[4]";?>' />
+				<input type='submit' name='buttom' 
+					class='btn btn-block btn btn-outline-dark' value= '<?php echo "$obj[5]";?>' /> <br/><br/>
+			</form>
+
 			<a href="Quest_02.php" class="btn btn-block btn btn-outline-success">Proximo</a>
             <a href="../welcome.php" class="btn btn-block btn-link bg-light">Parar</a>
 			<div id="prize">

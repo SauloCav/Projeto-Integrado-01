@@ -33,7 +33,8 @@
 				<h1 class="display-5">Pergunta 07</h1>
 			</div>
 			
-			<?php $MyList->PrintList(6); ?>
+			<?php $obj = $MyList->findObject(6); ?>
+			<?php var_dump ($obj); ?>
 			<a href="playerWin.php" class="btn btn-block btn btn-outline-success">Win</a>
             <a href="../welcome.php" class="btn btn-block btn-link bg-light">Parar</a>
 			<div id="prize">

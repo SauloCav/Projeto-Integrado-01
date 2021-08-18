@@ -25,7 +25,7 @@
 			$this->head = null;
 		}
 	
-		public function PrintList($number) {
+		public function findObject($number) {
 			$temp = new Node();
 			$temp = $this->head;
 
@@ -33,12 +33,14 @@
 				while($temp != null) {
 					if($temp->num === $number){
 						
-						echo $temp->data[0]." <br/>";
+						/*echo $temp->data[0]." <br/>";
 						echo "<h4><center><strong>".$temp->data[1]." </strong></h4></center>";
 						echo '<a href="../welcome.php" class="btn btn-block btn-outline-warning">'.$temp->data[2].' </a>';
 						echo "<a href='../welcome.php' class='btn btn-block btn btn-outline-info'>".$temp->data[3]." </a>";
 						echo "<a href='../welcome.php' class='btn btn-block btn btn btn-outline-primary'>".$temp->data[4]." </a>";
-						echo "<a href='../welcome.php' class='btn btn-block btn btn-outline-dark'>".$temp->data[5]." </a><br/><br/>";
+						echo "<a href='../welcome.php' class='btn btn-block btn btn-outline-dark'>".$temp->data[5]." </a><br/><br/>";*/
+
+						return $temp->data;
 						
 					}
 					$temp = $temp->next;
