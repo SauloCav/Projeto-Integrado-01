@@ -21,18 +21,24 @@
         }
         .wrapper h1 {text-align: center}
         .wrapper form .form-group span {color: red;}
+		#prize {
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
 	<main>
 		<section class="container wrapper">
 			<div class="page-header">
-				<h1 class="display-5">01 <?php echo $_SESSION['nickname']; ?></h1>
+				<h1 class="display-5">Pergunta 01</h1>
 			</div>
 
-			<a href="Quest_02.php" class="btn btn-block btn btn-outline-success">02</a>
 			<?php $MyList->PrintList(0); ?>
-            <a href="../welcome.php" class="btn btn-block btn-link bg-light">Sair</a>
+			<a href="Quest_02.php" class="btn btn-block btn btn-outline-success">Proximo</a>
+            <a href="../welcome.php" class="btn btn-block btn-link bg-light">Parar</a>
+			<div id="prize">
+			<h3><br> Acertar: R$ 1 Mil || Parar: R$ 0 || Errar: R$ 0</h3>
+			</div>
 
 		</section>
 	</main>

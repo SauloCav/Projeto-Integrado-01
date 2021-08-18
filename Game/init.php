@@ -31,6 +31,8 @@
 			</div>
 
 			<a href="Quest_01.php" class="btn btn-block btn btn-outline-success">Iniciar</a>
+			<a href="playerOver.php" class="btn btn-block btn btn-outline-success">Derrota</a>
+            <a href="playerWin.php" class="btn btn-block btn btn-outline-success">Vitória</a>
             <a href="../welcome.php" class="btn btn-block btn-link bg-light">Sair</a>
 
 		</section>

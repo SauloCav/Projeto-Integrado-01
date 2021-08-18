@@ -6,8 +6,6 @@
 
 	require_once '../config/config.php';
 
-	$MyList->PrintList(1);
-
 ?>
 
 <!DOCTYPE html>
@@ -23,19 +21,24 @@
         }
         .wrapper h1 {text-align: center}
         .wrapper form .form-group span {color: red;}
+		#prize {
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
 	<main>
 		<section class="container wrapper">
 			<div class="page-header">
-				<h1 class="display-5">02 <?php echo $_SESSION['nickname']; ?></h1>
+				<h1 class="display-5">Pergunta 02</h1>
 			</div>
-
-			<a href="Quest_03.php" class="btn btn-block btn btn-outline-success">03</a>
-            <a href="playerOver.php" class="btn btn-block btn btn-outline-success">Derrota</a>
-            <a href="playerWin.php" class="btn btn-block btn btn-outline-success">Vitória</a>
-            <a href="../welcome.php" class="btn btn-block btn-link bg-light">Sair</a>
+			
+			<?php $MyList->PrintList(1); ?>
+			<a href="Quest_03.php" class="btn btn-block btn btn-outline-success">Proximo</a>
+            <a href="../welcome.php" class="btn btn-block btn-link bg-light">Parar</a>
+			<div id="prize">
+			<h3><br> Acertar: R$ 5 Mil || Parar: R$ 1 Mil || Errar: R$ 500</h3>
+			</div>
 
 		</section>
 	</main>
