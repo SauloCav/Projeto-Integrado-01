@@ -34,9 +34,50 @@
 			</div>
 			
 			<?php $obj = $MyList->findObject(3); ?>
-			<?php var_dump ($obj); ?>
-			<a href="Quest_05.php" class="btn btn-block btn btn-outline-success">Proximo</a>
-            <a href="../welcome.php" class="btn btn-block btn-link bg-light">Parar</a>
+
+			<?php
+				if(array_key_exists('buttom', $_POST)) {
+					wrongAnswer();
+				}
+				elseif (array_key_exists('buttomCorrect', $_POST)) {
+					correctAnswer();
+				}
+				function correctAnswer() {
+						header('location: Quest_05.php');
+				}
+				function wrongAnswer() {
+					header('location: playerOver.php');
+				}
+			?>
+
+			<br/><h3 style="text-align: center;" class="display-5"><strong> <?php echo "$obj[1]";?> </strong></h3>
+
+			<form method="post">
+
+				<?php
+					$divs = array('<div id="divFirst"><input type="submit" name="buttomCorrect" 
+					class="btn btn-block btn btn-outline-primary" value= "'.$obj[2].'" /> <br/></div>',
+					'<div id="divFirst"><input type="submit" name="buttom" 
+					class="btn btn-block btn btn-outline-primary" value= "'.$obj[3].'" /> <br/></div>',
+					'<div id="divFirst"><input type="submit" name="buttom" 
+					class="btn btn-block btn btn-outline-primary" value= "'.$obj[4].'" /> <br/></div>',
+					'<div id="divFirst"><input type="submit" name="buttom" 
+					class="btn btn-block btn btn-outline-primary" value= "'.$obj[5].'" /> <br/></div>');
+
+					shuffle($divs);
+					
+					echo $divs[0];
+					echo $divs[1];
+					echo $divs[2];
+					echo $divs[3];
+	
+				?>
+
+				<br/><br/>
+				
+			</form>
+
+            <a href="../welcome.php" class="btn btn-block btn btn-outline-dark">Parar</a>
 			<div id="prize">
 			<h3><br> Acertar: R$ 100 Mil || Parar: R$ 50 Mil || Errar: R$ 25 Mil</h3>
 			</div>

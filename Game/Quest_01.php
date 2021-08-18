@@ -50,22 +50,34 @@
 				}
 			?>
 
-			<h5 class="display-5">Id da Questão: <?php echo "$obj[0]";?> </h5>
-			<h3 style="text-align: center;" class="display-5"><strong> <?php echo "$obj[1]";?> </strong></h3>
+			<br/><h3 style="text-align: center;" class="display-5"><strong> <?php echo "$obj[1]";?> </strong></h3>
 
 			<form method="post">
-				<input type='submit' name='buttomCorrect' 
-					class='btn btn-block btn-outline-warning' value= '<?php echo "$obj[2]";?>' />
-				<input type='submit' name='buttom' 
-					class='btn btn-block btn btn-outline-info' value= '<?php echo "$obj[3]";?>' />
-				<input type='submit' name='buttom' 
-					class='btn btn-block btn btn btn-outline-primary' value= '<?php echo "$obj[4]";?>' />
-				<input type='submit' name='buttom' 
-					class='btn btn-block btn btn-outline-dark' value= '<?php echo "$obj[5]";?>' /> <br/><br/>
+
+				<?php
+					$divs = array('<div id="divFirst"><input type="submit" name="buttomCorrect" 
+					class="btn btn-block btn btn-outline-primary" value= "'.$obj[2].'" /> <br/></div>',
+					'<div id="divFirst"><input type="submit" name="buttom" 
+					class="btn btn-block btn btn-outline-primary" value= "'.$obj[3].'" /> <br/></div>',
+					'<div id="divFirst"><input type="submit" name="buttom" 
+					class="btn btn-block btn btn-outline-primary" value= "'.$obj[4].'" /> <br/></div>',
+					'<div id="divFirst"><input type="submit" name="buttom" 
+					class="btn btn-block btn btn-outline-primary" value= "'.$obj[5].'" /> <br/></div>');
+
+					shuffle($divs);
+					
+					echo $divs[0];
+					echo $divs[1];
+					echo $divs[2];
+					echo $divs[3];
+	
+				?>
+
+				<br/><br/>
+				
 			</form>
 
-			<a href="Quest_02.php" class="btn btn-block btn btn-outline-success">Proximo</a>
-            <a href="../welcome.php" class="btn btn-block btn-link bg-light">Parar</a>
+            <a href="../welcome.php" class="btn btn-block btn btn-outline-dark">Parar</a>
 			<div id="prize">
 			<h3><br> Acertar: R$ 1 Mil || Parar: R$ 0 || Errar: R$ 0</h3>
 			</div>
