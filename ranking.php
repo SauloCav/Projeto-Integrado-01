@@ -35,13 +35,12 @@
 		<section class="container wrapper">
 			<div class="page-header">
 				<h1 class="display-5">Hall da Fama</h1>
-				<a class="btn btn-block btn-link bg-light" href="question_board.php">Sair</a>
 				<br>
-			<table border="4"> 
+			<table border="1"> 
 				<tr> 
-					<td>Posição:</td> 
-					<td>Pontuação:</td> 
-					<td>Nickname:</td> 
+					<td>POSIÇÃO</td> 
+					<td>PONTUAÇÃO</td> 
+					<td>NICKNAME DO JOGADOR</td> 
 				</tr> 
 
 				<?php $pos = 1; ?>
@@ -55,10 +54,13 @@
 					</tr> 
 				<?php } ?> 
 			</table>
-
-				
-
 		</section>
+        <section class="container wrapper">
+			<div class="page-header">
+                <a class="btn btn-block btn-link bg-light" href="question_board.php">Sair</a>
+            </section>
+        </div>
 	</main>
 </body>
 </html>
+
