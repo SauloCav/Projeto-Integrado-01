@@ -43,9 +43,11 @@
 					correctAnswer();
 				}
 				function correctAnswer() {
-						header('location: playerWin.php');
+					$_SESSION["prize"] = 1000000;
+					header('location: playerWin.php');
 				}
 				function wrongAnswer() {
+					$_SESSION["prize"] = 0;
 					header('location: playerOver.php');
 				}
 			?>

@@ -7,6 +7,7 @@
 	$quests = "SELECT * FROM questoes_respostas"; 
 	$ques = $mysql_db->query($quests) or die($mysql_db->error);
 	$row = mysqli_fetch_all($ques);
+	$_SESSION["prize"] = 0;
 
 	$keys = array_rand($row, 20);
 	shuffle($keys);

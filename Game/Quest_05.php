@@ -46,6 +46,7 @@
 						header('location: Quest_06.php');
 				}
 				function wrongAnswer() {
+					$_SESSION["prize"] = 50000;
 					header('location: playerOver.php');
 				}
 			?>

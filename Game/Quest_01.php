@@ -43,9 +43,10 @@
 					correctAnswer();
 				}
 				function correctAnswer() {
-						header('location: Quest_02.php');
+					header('location: Quest_02.php');
 				}
 				function wrongAnswer() {
+					$_SESSION["prize"] = 0;
 					header('location: playerOver.php');
 				}
 			?>
