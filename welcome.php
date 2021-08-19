@@ -33,7 +33,7 @@
 			<a href="./Game/init.php" class="btn btn-block btn btn-outline-success">Jogar</a>
 			<a href="edit_account.php" class="btn btn-block btn-outline-warning">Editar Conta</a>
 			<a href="question_board.php" class="btn btn-block btn btn-outline-info">Painel de Perguntas</a>
-			<a class="btn btn-block btn btn btn-outline-primary" href="welcome.php">Hall da Fama</a>
+			<a href="ranking.php" class="btn btn-block btn btn btn-outline-primary" >Hall da Fama</a>
 			<a href="logout.php" class="btn btn-block btn-link bg-light" href="welcome.php">Deslogar</a>
 
 		</section>

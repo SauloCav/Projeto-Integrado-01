@@ -37,17 +37,15 @@
 
 			<?php
 				if(array_key_exists('buttom', $_POST)) {
-					wrongAnswer();
-				}
-				elseif (array_key_exists('buttomCorrect', $_POST)) {
-					correctAnswer();
-				}
-				function correctAnswer() {
-						header('location: Quest_03.php');
-				}
-				function wrongAnswer() {
 					$_SESSION["prize"] = 500;
 					header('location: playerOver.php');
+				}
+				elseif (array_key_exists('buttomCorrect', $_POST)) {
+					header('location: Quest_03.php');
+				}
+				elseif (array_key_exists('parar', $_POST)) {
+					$_SESSION["prize"] = 1000;
+					header('location: playerStop.php');
 				}
 			?>
 
@@ -71,6 +69,9 @@
 					echo $divs[1];
 					echo $divs[2];
 					echo $divs[3];
+
+					echo "<br/><br/>";
+					echo '<input type="submit" name="parar" class="btn btn-block btn btn-outline-dark" value="Parar">';
 	
 				?>
 
@@ -78,7 +79,6 @@
 				
 			</form>
 
-            <a href="../welcome.php" class="btn btn-block btn btn-outline-dark">Parar</a>
 			<div id="prize">
 			<h3><br> Acertar: R$ 5 Mil || Parar: R$ 1 Mil || Errar: R$ 500</h3>
 			</div>
