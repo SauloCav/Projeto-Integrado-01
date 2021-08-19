@@ -36,13 +36,16 @@
 		<section class="container wrapper">
 			<div class="page-header">
 				<h1 class="display-5">Hall da Fama</h1>
+<<<<<<< HEAD
 				<a class="btn btn-block btn-link bg-light" href="welcome.php">Sair</a>
+=======
+>>>>>>> 218149b4d12fcad60c70c571e86c57419f1eadb9
 				<br>
-			<table border="4"> 
+			<table border="1"> 
 				<tr> 
-					<td>Posição:</td> 
-					<td>Pontuação:</td> 
-					<td>Nickname:</td> 
+					<td>POSIÇÃO</td> 
+					<td>PONTUAÇÃO</td> 
+					<td>NICKNAME DO JOGADOR</td> 
 				</tr> 
 
 				<?php $pos = 1; ?>
@@ -57,7 +60,16 @@
 				<?php } ?> 
 			</table>
 		</section>
+<<<<<<< HEAD
 
+=======
+        <section class="container wrapper">
+			<div class="page-header">
+                <a class="btn btn-block btn-link bg-light" href="question_board.php">Sair</a>
+            </section>
+        </div>
+>>>>>>> 218149b4d12fcad60c70c571e86c57419f1eadb9
 	</main>
 </body>
 </html>
+
