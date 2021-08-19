@@ -4,15 +4,6 @@
 
 	require_once '../config/config.php';
 
-	$quests = "SELECT * FROM questoes_respostas"; 
-	$ques = $mysql_db->query($quests) or die($mysql_db->error);
-	$row = mysqli_fetch_all($ques);
-	$_SESSION["prize"] = 0;
-
-	$keys = array_rand($row, 20);
-	shuffle($keys);
-	//var_dump ($keys);
-
 	class Node {
 		public $data;
 		public $num;
@@ -46,48 +37,55 @@
 
 	};
 
-	$MyList = new LinkedList();
+	$quests = "SELECT * FROM questoes_respostas WHERE id_questao IS NOT NULL"; 
+    $ques = $mysql_db->query($quests) or die($mysql_db->error);
+    $row = mysqli_fetch_all($ques);
+    $_SESSION["prize"] = 0;
 
-	$first = new Node();
-	$first->data = $row[$row[$keys[0]][0]];
-	$first->next = null;
-	$first->num = 0;
-	$MyList->head = $first;
+    shuffle($row);
 
-	$second = new Node();
-	$second->data = $row[$row[$keys[1]][0]];
-	$second->next = null;
-	$second->num = 1;
-	$first->next = $second;
+    $MyList = new LinkedList();
 
-	$third = new Node();
-	$third->data = $row[$row[$keys[2]][0]];
-	$third->next = null;
-	$third->num = 2;
-	$second->next = $third;
+    $first = new Node();
+    $first->data = $row[$row[0][0]];
+    $first->next = null;
+    $first->num = 0;
+    $MyList->head = $first;
 
-	$fourth = new Node();
-	$fourth->data = $row[$row[$keys[3]][0]];
-	$fourth->next = null;
-	$fourth->num = 3;
-	$third->next = $fourth;
+    $second = new Node();
+    $second->data = $row[$row[1][0]];
+    $second->next = null;
+    $second->num = 1;
+    $first->next = $second;
 
-	$fifth = new Node();
-	$fifth->data = $row[$row[$keys[4]][0]];
-	$fifth->next = null;
-	$fifth->num = 4;
-	$fourth->next = $fifth;
+    $third = new Node();
+    $third->data = $row[$row[2][0]];
+    $third->next = null;
+    $third->num = 2;
+    $second->next = $third;
 
-	$sixth = new Node();
-	$sixth->data = $row[$row[$keys[5]][0]];
-	$sixth->next = null;
-	$sixth->num = 5;
-	$fifth->next = $sixth;
+    $fourth = new Node();
+    $fourth->data = $row[$row[3][0]];
+    $fourth->next = null;
+    $fourth->num = 3;
+    $third->next = $fourth;
 
-	$seventh = new Node();
-	$seventh->data = $row[$row[$keys[6]][0]];
-	$seventh->next = null;
-	$seventh->num = 6;
-	$sixth->next = $seventh;
+    $fifth = new Node();
+    $fifth->data = $row[$row[4][0]];
+    $fifth->next = null;
+    $fifth->num = 4;
+    $fourth->next = $fifth;
+
+    $sixth = new Node();
+    $sixth->data = $row[$row[5][0]];
+    $sixth->next = null;
+    $sixth->num = 5;
+    $fifth->next = $sixth;
+
+    $seventh = new Node();
+    $seventh->data = $row[$row[6][0]];
+    $seventh->next = null;
+    $seventh->num = 6;
+    $sixth->next = $seventh;
 
 ?>

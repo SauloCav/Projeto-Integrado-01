@@ -2,9 +2,7 @@
 
 	session_start();
 
-	include 'linked_list.php';
-
-	require_once '../config/config.php';
+	require_once 'linked_list.php';
 
 ?>
 
@@ -33,8 +31,6 @@
 				<h1 class="display-5">Pergunta 01</h1>
 			</div>
 
-			<?php $obj = $MyList->findObject(0); ?>
-
 			<?php
 				if(array_key_exists('buttom', $_POST)) {
 					$_SESSION["prize"] = 0;
@@ -49,28 +45,52 @@
 				}
 			?>
 
-			<br/><h3 style="text-align: center;" class="display-5"><strong> <?php echo "$obj[1]";?> </strong></h3>
+			<br/><h3 style="text-align: center;" class="display-5"><strong> <?php echo $_SESSION["quest_1"][1];?> </strong></h3>
 
 			<form method="post">
 
 				<?php
-					$divs = array('<div id="divFirst"><input type="submit" name="buttomCorrect" 
-					class="btn btn-block btn btn-outline-primary" value= "'.$obj[2].'" /> <br/></div>',
-					'<div id="divFirst"><input type="submit" name="buttom" 
-					class="btn btn-block btn btn-outline-primary" value= "'.$obj[3].'" /> <br/></div>',
-					'<div id="divFirst"><input type="submit" name="buttom" 
-					class="btn btn-block btn btn-outline-primary" value= "'.$obj[4].'" /> <br/></div>',
-					'<div id="divFirst"><input type="submit" name="buttom" 
-					class="btn btn-block btn btn-outline-primary" value= "'.$obj[5].'" /> <br/></div>');
 
-					shuffle($divs);
-					
-					echo $divs[0];
-					echo $divs[1];
-					echo $divs[2];
-					echo $divs[3];
+					if (array_key_exists('elimina', $_POST)) {
 
-					echo "<br/><br/>";
+						$_SESSION["elimina_alternativas"] = 1;
+
+						$divs = array('<div id="divFirst"><input type="submit" name="buttomCorrect" 
+						class="btn btn-block btn btn-outline-primary" value= "'.$_SESSION["quest_1"][2].'" /> <br/></div>',
+						'<div id="divFirst"><input type="submit" name="buttom" 
+						class="btn btn-block btn btn-outline-primary" value= "'.$_SESSION["quest_1"][3].'" /> <br/></div>');
+
+						shuffle($divs);
+
+						echo $divs[0];
+						echo $divs[1];
+						
+					}
+					else {
+
+						$divs = array('<div id="divFirst"><input type="submit" name="buttomCorrect" 
+						class="btn btn-block btn btn-outline-primary" value= "'.$_SESSION["quest_1"][2].'" /> <br/></div>',
+						'<div id="divFirst"><input type="submit" name="buttom" 
+						class="btn btn-block btn btn-outline-primary" value= "'.$_SESSION["quest_1"][3].'" /> <br/></div>',
+						'<div id="divFirst"><input type="submit" name="buttom" 
+						class="btn btn-block btn btn-outline-primary" value= "'.$_SESSION["quest_1"][4].'" /> <br/></div>',
+						'<div id="divFirst"><input type="submit" name="buttom" 
+						class="btn btn-block btn btn-outline-primary" value= "'.$_SESSION["quest_1"][5].'" /> <br/></div>');
+
+						shuffle($divs);
+
+						echo $divs[0];
+						echo $divs[1];
+						echo $divs[2];
+						echo $divs[3];
+
+					}
+
+					if ($_SESSION["elimina_alternativas"] === 0) {
+						echo '<input type="submit" name="elimina" class="btn btn-block btn btn-outline-danger" value="Eliminar duas Alternativas">';
+					}
+
+					echo "<br/><br/><br/>";
 					echo '<input type="submit" name="parar" class="btn btn-block btn btn-outline-dark" value="Parar">';
 	
 				?>

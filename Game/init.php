@@ -2,9 +2,17 @@
 
 	session_start();
 
-	include 'linked_list.php';
-
 	require_once '../config/config.php';
+	require_once 'linked_list.php';
+
+	$_SESSION["elimina_alternativas"] = 0;
+	$_SESSION["quest_1"] = $MyList->findObject(0);
+	$_SESSION["quest_2"] = $MyList->findObject(1);
+	$_SESSION["quest_3"] = $MyList->findObject(2);
+	$_SESSION["quest_4"] = $MyList->findObject(3);
+	$_SESSION["quest_5"] = $MyList->findObject(4);
+	$_SESSION["quest_6"] = $MyList->findObject(5);
+	$_SESSION["quest_7"] = $MyList->findObject(6);
 
 ?>
 

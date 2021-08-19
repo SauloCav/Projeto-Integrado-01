@@ -32,10 +32,11 @@
 </head>
 <body>
 	<main>
+
 		<section class="container wrapper">
 			<div class="page-header">
 				<h1 class="display-5">Hall da Fama</h1>
-				<a class="btn btn-block btn-link bg-light" href="question_board.php">Sair</a>
+				<a class="btn btn-block btn-link bg-light" href="welcome.php">Sair</a>
 				<br>
 			<table border="4"> 
 				<tr> 
@@ -55,10 +56,8 @@
 					</tr> 
 				<?php } ?> 
 			</table>
-
-				
-
 		</section>
+
 	</main>
 </body>
 </html>

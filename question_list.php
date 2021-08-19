@@ -4,7 +4,7 @@
 
 	require_once 'config/config.php';
 
-	$consulta = "SELECT * FROM questoes_respostas"; 
+	$consulta = "SELECT * FROM questoes_respostas WHERE id_questao IS NOT NULL"; 
 	$cons = $mysql_db->query($consulta) or die($mysql_db->error);
 
 ?>
