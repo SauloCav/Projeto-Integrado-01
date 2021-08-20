@@ -20,10 +20,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Hall da Fama</title>
-	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
 	<style>
         .wrapper{ 
-        	width: 1800px; 
+        	width: 850px; 
         	padding: 20px; 
         }
         .wrapper h1 {text-align: center}
@@ -32,44 +33,31 @@
 </head>
 <body>
 	<main>
-
 		<section class="container wrapper">
 			<div class="page-header">
 				<h1 class="display-5">Hall da Fama</h1>
-<<<<<<< HEAD
 				<a class="btn btn-block btn-link bg-light" href="welcome.php">Sair</a>
-=======
->>>>>>> 218149b4d12fcad60c70c571e86c57419f1eadb9
-				<br>
-			<table border="1"> 
-				<tr> 
-					<td>POSIÇÃO</td> 
-					<td>PONTUAÇÃO</td> 
-					<td>NICKNAME DO JOGADOR</td> 
-				</tr> 
-
-				<?php $pos = 1; ?>
-
-				</td><?php while($dado = $ran->fetch_array()) { ?> 
-					<tr> 
-						<td><?php echo $pos; ?></td>
-						<td><?php echo $dado['pontuacao']; ?></td> 
-						<td><?php echo $dado['nickname']; ?></td>
-						<?php $pos++; ?>
-					</tr> 
-				<?php } ?> 
-			</table>
+                <br>
+                <table class="table" border="1">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">POSIÇÃO</th>
+                        <th scope="col">PONTUAÇÃO</th>
+                        <th scope="col">NICKNAME DO JOGADOR</th>
+                      </tr>
+                      
+                    </td><?php while($dado = $ran->fetch_array()) { ?> 
+                        <tr> 
+                            <th><?php echo $pos; ?></td>
+                            <th><?php echo $dado['pontuacao']; ?></th> 
+                            <th><?php echo $dado['nickname']; ?></th>
+                            <?php $pos++; ?>
+                        </tr> 
+                    <?php } ?> 
+                </table>
 		</section>
-<<<<<<< HEAD
-
-=======
-        <section class="container wrapper">
-			<div class="page-header">
-                <a class="btn btn-block btn-link bg-light" href="question_board.php">Sair</a>
-            </section>
-        </div>
->>>>>>> 218149b4d12fcad60c70c571e86c57419f1eadb9
 	</main>
 </body>
 </html>
+
 
