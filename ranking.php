@@ -34,7 +34,6 @@
 <body>
 	<main>
 		<section class="container wrapper">
-			<div class="page-header">
 				<h1 class="display-5">Hall da Fama</h1>
 				<a class="btn btn-block btn-link bg-light" href="welcome.php">Sair</a>
                 <br>
@@ -44,8 +43,7 @@
                         <th scope="col">POSIÇÃO</th>
                         <th scope="col">PONTUAÇÃO</th>
                         <th scope="col">NICKNAME DO JOGADOR</th>
-                      </tr>
-                      
+                      </tr>       
                     </td><?php while($dado = $ran->fetch_array()) { ?> 
                         <tr> 
                             <th><?php echo $pos; ?></td>
