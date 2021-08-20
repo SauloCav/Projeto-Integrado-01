@@ -51,7 +51,7 @@
             echo "</div>";
 
             echo '<input type="submit" name="sim" class="btn btn-block btn btn-outline-dark" value="Sim">';
-            echo '<input type="submit" name="nao" class="btn btn-block btn btn-outline-dark" value="Não">';
+            echo '<a class="btn btn-block btn btn-outline-dark" href="../question_list.php">Nao</a>';
 
         ?>
 

@@ -2,6 +2,34 @@
 
 	session_start();
 
+	require_once '../config/config.php';
+
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $param_id = $_SESSION["key"];
+
+        $sqldv = "DELETE FROM denuncia_validacao WHERE id_quest = $param_id";
+
+        if (mysqli_query($mysql_db, $sqldv)) {
+            session_destroy();
+        }
+        else {
+            echo "Erro ao Deletar!";
+        }
+
+        $sqlquests = "DELETE FROM questoes_respostas WHERE id_questao = $param_id";
+
+        if (mysqli_query($mysql_db, $sqlquests)) {
+            session_destroy();
+            header("location: ../question_list.php");
+            exit();
+        } 
+        else {
+            echo "Erro ao Deletar!";
+        }
+
+	}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +53,7 @@
 </head>
 <body>
 	<main>
-		<section class="container wrapper"> 
+		<section class="container wrapper"> <br>
 
         <?php
 
@@ -35,7 +63,7 @@
 
             $param_key = $_SESSION["key"];
             
-            $quest = "SELECT *FROM questoes_respostas WHERE (id_questao = $param_key)";
+            $quest = "SELECT *FROM questoes_respostas WHERE id_questao = $param_key";
             $ques = $mysql_db->query($quest) or die($mysql_db->error);
 
             $dado = $ques->fetch_array();
@@ -50,8 +78,11 @@
 
             echo "</div>";
 
-            echo '<input type="submit" name="sim" class="btn btn-block btn btn-outline-dark" value="Sim">';
-            echo '<input type="submit" name="nao" class="btn btn-block btn btn-outline-dark" value="Não">';
+            echo '<form method="post">';
+            echo '<input type="submit" name="sim" class="btn btn-block btn btn-outline-dark" value="Sim"><br>';
+            echo '</form>';
+
+            echo '<a class="btn btn-block btn btn-outline-dark" href="../question_list.php">Nao</a>';
 
         ?>
 

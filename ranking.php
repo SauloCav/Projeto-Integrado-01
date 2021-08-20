@@ -35,8 +35,10 @@
 	<main>
 		<section class="container wrapper">
 				<h1 class="display-5">Hall da Fama</h1>
-				<a class="btn btn-block btn-link bg-light" href="welcome.php">Sair</a>
                 <br>
+
+                <?php $pos = 1; ?>
+
                 <table class="table" border="1">
                     <thead class="thead-light">
                       <tr>
@@ -46,13 +48,16 @@
                       </tr>       
                     </td><?php while($dado = $ran->fetch_array()) { ?> 
                         <tr> 
-                            <th><?php echo $pos; ?></td>
+                            <th><?php echo $pos; ?></th>
                             <th><?php echo $dado['pontuacao']; ?></th> 
                             <th><?php echo $dado['nickname']; ?></th>
                             <?php $pos++; ?>
                         </tr> 
                     <?php } ?> 
                 </table>
+
+                <a class="btn btn-block btn-link bg-light" href="welcome.php">Sair</a>
+                
 		</section>
 	</main>
 </body>

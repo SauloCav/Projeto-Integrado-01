@@ -1,29 +1,39 @@
 <?php
 
-session_start();
+    session_start();
 
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true){
-    header('location: index.php');
-    exit;
-}
- 
-require_once 'config/config.php';
- 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-    $param_id = $_SESSION["id_user"];
-    $sql = "DELETE FROM users WHERE id_user = $param_id";
-
-    if (mysqli_query($mysql_db, $sql)) {
-        echo "Deletado com sucesso!";
-        session_destroy();
-        header("location: index.php");
-        exit();
-    } else {
-        echo "Erro ao Deletar!";
+    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true){
+        header('location: index.php');
+        exit;
     }
+    
+    require_once 'config/config.php';
+    
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-}
+        $param_id = $_SESSION["id_user"];
+
+        $sqlrank = "DELETE FROM ranking WHERE id_usuario = $param_id";
+
+        if (mysqli_query($mysql_db, $sqlrank)) {
+            session_destroy();
+        }
+        else {
+            echo "Erro ao Deletar!";
+        }
+
+        $sqluser = "DELETE FROM users WHERE id_user = $param_id";
+
+        if (mysqli_query($mysql_db, $sqluser)) {
+            session_destroy();
+            header("location: index.php");
+            exit();
+        } 
+        else {
+            echo "Erro ao Deletar!";
+        }
+
+    }
 
 ?>
  

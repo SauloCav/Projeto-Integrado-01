@@ -50,7 +50,8 @@
             $param_resposta_b = $resposta_b;
             $param_resposta_c = $resposta_c;
 
-			$sql = "INSERT INTO questoes_respostas (pergunta, resp_correta, resp_a, resp_b, resp_c, valida) VALUES ('$param_questao', '$param_resposta_certa', '$param_resposta_a', '$param_resposta_b', '$param_resposta_c', 'i')";
+			$sql = "INSERT INTO questoes_respostas (pergunta, resp_correta, resp_a, resp_b, resp_c, valida) 
+                VALUES ('$param_questao', '$param_resposta_certa', '$param_resposta_a', '$param_resposta_b', '$param_resposta_c', 'i')";
 
 			if ($stmt = $mysql_db->prepare($sql)) {
 
@@ -58,7 +59,29 @@
                     
                     if ($stmt = $mysql_db->prepare($sql)) {
 
-                        header('location: ./question_board.php');
+                        $param_id_resp = mysqli_insert_id($mysql_db);
+
+                        $sqldv = "INSERT INTO denuncia_validacao (num_denuncias, num_validacoes, id_quest) 
+                            VALUES (0, 0, '$param_id_resp')";
+
+                        if ($stmt = $mysql_db->prepare($sqldv)) {
+
+                            if ($stmt->execute()) {
+                                
+                                if ($stmt = $mysql_db->prepare($sqldv)) {
+            
+                                    header('location: ./question_board.php');
+                                }   
+                                else {
+                                    echo "Algo deu errado, Tente Novamente!";
+                                }
+                                    
+                            } else {
+                                echo "Algo deu errado, Tente Novamente!";
+                            }
+            
+                            $stmt->close();	
+                        }
                     }   
                     else {
                         echo "Algo deu errado, Tente Novamente!";
