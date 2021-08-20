@@ -51,7 +51,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
 	<style>
-        .wrapper{ 
+        .wrapper{
+            text-align: center;
         	width: 350px; 
         	padding: 30px; 
         }
@@ -67,6 +68,7 @@
     <section class="container wrapper">
         <h1>Você decidiu parar!</h1> <br/>
         <h2 class="display-5"><strong>Seu Prêmio: <?php echo $_SESSION["prize"];?> </strong></h2>
+        <img src="https://thumbs.gfycat.com/MerryIndelibleCondor.webp" alt="Error" width="60%">
     </section>
     <div class="container wrapper">
         <form method="post">

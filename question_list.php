@@ -7,6 +7,31 @@
 	$consulta = "SELECT * FROM questoes_respostas WHERE id_questao IS NOT NULL"; 
 	$cons = $mysql_db->query($consulta) or die($mysql_db->error);
 
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+		foreach ($_POST as $key => $value) {
+			$_SESSION["key"] = $key;
+			$_SESSION["value"] = $value;
+		}
+
+		if ($_SESSION["value"] === 'Editar') {
+			header('location: ./questions_operations/edit_quest.php');
+		}
+
+		if ($_SESSION["value"] === 'Aprovar') {
+			header('location: ./questions_operations/approve_quest.php');
+		}
+
+		if ($_SESSION["value"] === 'Excluir') {
+			header('location: ./questions_operations/delete_quest.php');
+		}
+
+		if ($_SESSION["value"] === 'Denunciar') {
+			header('location: ./questions_operations/denounce_quest.php');
+		}
+
+	}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +57,7 @@
 				<br>
 			</div>
 
-			<table border="1"> 
+			<table border="5"> 
 				<tr> 
 					<td>Questão:</td> 
 					<td>Resposta Correta:</td> 
@@ -49,17 +74,19 @@
 					<td><?php echo $dado['resp_b']; ?></td>
 					<td><?php echo $dado['resp_c']; ?></td>
 					<td><?php echo $dado['valida']; ?>
+					<?php $_SESSION["dados"] = $dado;?>
 
-					<td><?php if ($dado['valida'] === 'i') {
-						echo "<a href='./Question_Operations/edit_quest.php" . "'> Editar </a>";
-					}
-					else {
-						echo "<a href='./Question_Operations/invalidate_quest.php" . "'> Denunciar </a>";
-					} ?></td> 
-
-					<td> <a href="./Question_Operations/delete_quest.php">Excluir</a> </td> 
-
-					<!--<td> <a href="questoes_editar.php?codigo= <//?php echo $dado['usu_codigo']; ?>">Editar</a> </td>-->
+					<form method="post">
+						<?php if ($dado['valida'] === 'i') {
+							echo '<td> <input type="submit" name='.$_SESSION["dados"][0].' class="btn btn-block btn btn-outline-dark" value="Editar"> </td>';
+							echo '<td> <input type="submit" name='.$_SESSION["dados"][0].' class="btn btn-block btn btn-outline-dark" value="Aprovar"> </td>';
+							echo '<td> <input type="submit" name='.$_SESSION["dados"][0].' class="btn btn-block btn btn-outline-dark" value="Excluir"> </td>';
+						}
+						else {
+							echo '<td> <input type="submit" name='.$_SESSION["dados"][0].' class="btn btn-block btn btn-outline-dark" value="Denunciar"> </td>';
+						} 
+						?> 
+					</form>
 
 				</tr> 
 				<?php } ?> 

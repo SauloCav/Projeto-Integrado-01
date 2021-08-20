@@ -37,7 +37,7 @@
 
 	};
 
-	$quests = "SELECT * FROM questoes_respostas WHERE id_questao IS NOT NULL"; 
+	$quests = "SELECT * FROM questoes_respostas WHERE id_questao IS NOT NULL AND valida = 'v'"; 
     $ques = $mysql_db->query($quests) or die($mysql_db->error);
     $row = mysqli_fetch_all($ques);
     $_SESSION["prize"] = 0;
