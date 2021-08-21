@@ -49,7 +49,7 @@
     <main class="container wrapper">
         <section>
             <h2>Deletar Conta</h2>
-            <p class="text-center">Deseja realmente excluir essa conta?</p>
+            <p class="text-center">Deseja realmente excluir sua conta?</p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
                 <div class="form-group">
                     <input type="submit" class="btn btn-block btn-primary" value="Sim">

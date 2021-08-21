@@ -1,120 +1,103 @@
 <?php
 
-session_start();
- 
-require_once 'config/config.php';
- 
-// Define variables and initialize with empty values
-$new_password = $confirm_password = '';
-$new_username = $new_username_err = '';
-$new_nickname = $new_nickname_err = '';
-$new_password_err = $confirm_password_err = '';
- 
-// Processing form data when form is submitted
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    session_start();
+    
+    require_once 'config/config.php';
 
-    if(empty(trim($_POST['new_username']))){
-        $new_username_err = 'Insira seu novo Nome de Usuário!';     
-    } else {
+    $new_password = $confirm_password = '';
+    $new_username = $new_username_err = '';
+    $new_nickname = $new_nickname_err = '';
+    $new_password_err = $confirm_password_err = '';
+    
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-        // Prepare a select statement
-        $sql = 'SELECT id_user FROM users WHERE username = ?';
-
-        if ($stmt = $mysql_db->prepare($sql)) {
-            // Set parmater
-            $param_username = trim($_POST['username']);
-
-            // Bind param variable to prepares statement
-            $stmt->bind_param('s', $param_username);
-
-            // Attempt to execute statement
-            if ($stmt->execute()) {
-                
-                // Store executed result
-                $stmt->store_result();
-
-                if ($stmt->num_rows == 1) {
-                    $new_username_err = 'Esse Nome de Usuário já foi escolhido!';
-                } else {
-                    $new_username = trim($_POST['new_username']);
-                }
-            } else {
-                echo "Oops! ${$new_username}, Algo deu errado, Tente Novamente!";
-            }
-
-            // Close statement
-            $stmt->close();
+        if(empty(trim($_POST['new_username']))){
+            $new_username_err = 'Insira seu novo Nome de Usuário!';     
         } else {
 
-            // Close db connction
+            $sql = 'SELECT id_user FROM users WHERE username = ?';
+
+            if ($stmt = $mysql_db->prepare($sql)) {
+
+                $param_username = trim($_POST['username']);
+
+                $stmt->bind_param('s', $param_username);
+
+                if ($stmt->execute()) {
+                    
+                    $stmt->store_result();
+
+                    if ($stmt->num_rows == 1) {
+                        $new_username_err = 'Esse Nome de Usuário já foi escolhido!';
+                    } else {
+                        $new_username = trim($_POST['new_username']);
+                    }
+                } else {
+                    echo "Oops! ${$new_username}, Algo deu errado, Tente Novamente!";
+                }
+
+                $stmt->close();
+            } else {
+                $mysql_db->close();
+            }
+        }
+
+        if (empty(trim($_POST['new_nickname']))) {
+            $new_nickname_err = "Insira seu Nickname!";
+        }
+        else{
+            $new_nickname = trim($_POST["new_nickname"]);
+        }
+
+        if(empty(trim($_POST['new_password']))){
+            $new_password_err = 'Insira a senha!';     
+        } elseif(strlen(trim($_POST['new_password'])) < 6){
+            $new_password_err = 'A Senha deve ter no mínimo 6 caracteres!';
+        } else{
+            $new_password = trim($_POST['new_password']);
+        }
+    
+        if(empty(trim($_POST['confirm_password']))){
+            $confirm_password_err = 'Insira a confirmação da senha!';
+        } else{
+            $confirm_password = trim($_POST['confirm_password']);
+            if(empty($new_password_err) && ($new_password != $confirm_password)){
+                $confirm_password_err = 'As Senhas nao Batem!';
+            }
+        }
+            
+        if(empty($new_password_err) && empty($confirm_password_err) && empty($new_username_err) && empty($new_nickname_err)){
+
+            $param_username = $new_username;
+            $param_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $param_nickname = $new_nickname;
+            $param_id = $_SESSION["id_user"];
+
+            $sql = "UPDATE users SET username = '$param_username', password = '$param_password', nickname = '$param_nickname' WHERE id_user = '$param_id'";
+            
+            if($stmt = $mysql_db->prepare($sql)){
+             
+                if($stmt->execute()){
+                    session_destroy();
+                    header("location: index.php");
+                    exit();
+                } else{
+                    echo "Oops! Algo deu errado, tente novamente mais tarde!";
+                }
+                $stmt->close();
+            }
             $mysql_db->close();
         }
+
     }
 
-    if (empty(trim($_POST['new_nickname']))) {
-        $new_nickname_err = "Insira seu Nickname!";
-    }
-    else{
-        $new_nickname = trim($_POST["new_nickname"]);
-    }
-
-    // Validate new password
-    if(empty(trim($_POST['new_password']))){
-        $new_password_err = 'Insira a senha!';     
-    } elseif(strlen(trim($_POST['new_password'])) < 6){
-        $new_password_err = 'A Senha deve ter no mínimo 6 caracteres!';
-    } else{
-        $new_password = trim($_POST['new_password']);
-    }
-    
-    // Validate confirm password
-    if(empty(trim($_POST['confirm_password']))){
-        $confirm_password_err = 'Insira a confirmação da senha!';
-    } else{
-        $confirm_password = trim($_POST['confirm_password']);
-        if(empty($new_password_err) && ($new_password != $confirm_password)){
-            $confirm_password_err = 'As Senhas nao Batem!';
-        }
-    }
-        
-    // Check input errors before updating the database
-    if(empty($new_password_err) && empty($confirm_password_err) && empty($new_username_err) && empty($new_nickname_err)){
-
-        $param_username = $new_username;
-        $param_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $param_nickname = $new_nickname;
-        $param_id = $_SESSION["id_user"];
-
-        $sql = "UPDATE users SET username = '$param_username', password = '$param_password', nickname = '$param_nickname' WHERE id_user = '$param_id'";
-        
-        if($stmt = $mysql_db->prepare($sql)){
-            
-            // Attempt to execute the prepared statement
-            if($stmt->execute()){
-                // Password updated successfully. Destroy the session, and redirect to login page
-                session_destroy();
-                header("location: index.php");
-                exit();
-            } else{
-                echo "Oops! Algo deu errado, tente novamente mais tarde!";
-            }
-
-            // Close statement
-            $stmt->close();
-        }
-
-        // Close connection
-        $mysql_db->close();
-    }
-
-}
 ?>
  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reset Password</title>
+    <title>Editar Conta</title>
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
     <style type="text/css">
         .wrapper{ 
@@ -128,8 +111,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <body>
     <main class="container wrapper">
         <section>
-            <h2>Mudar Senha</h2>
-            <p class="text-center">Insira sua nova senha</p>
+            <h2>Editar Conta</h2>
+            <p class="text-center">Insira suas novas informações:</p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
                 <div class="form-group <?php echo (!empty($new_username_err)) ? 'has-error' : ''; ?>">
                     <label>Novo Nome de Usuário:</label>

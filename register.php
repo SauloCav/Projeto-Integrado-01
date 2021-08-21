@@ -1,36 +1,26 @@
 <?php
-	// Include config file
+
 	require_once 'config/config.php';
 
-	// Define variables and initialize with empty values
 	$username = $password = $confirm_password = $nickname = "";
-
 	$username_err = $password_err = $confirm_password_err = $nickname_err = "";
 
-	// Process submitted form data
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-		// Check if username is empty
 		if (empty(trim($_POST['username']))) {
 			$username_err = "Insira seu nome de Usuário!";
 
-			// Check if username already exist
 		} else {
 
-			// Prepare a select statement
 			$sql = 'SELECT id_user FROM users WHERE username = ?';
 
 			if ($stmt = $mysql_db->prepare($sql)) {
-				// Set parmater
+	
 				$param_username = trim($_POST['username']);
-
-				// Bind param variable to prepares statement
 				$stmt->bind_param('s', $param_username);
 
-				// Attempt to execute statement
 				if ($stmt->execute()) {
-					
-					// Store executed result
+
 					$stmt->store_result();
 
 					if ($stmt->num_rows == 1) {
@@ -41,12 +31,8 @@
 				} else {
 					echo "Oops! ${$username}, Algo deu errado, Tente Novamente!";
 				}
-
-				// Close statement
 				$stmt->close();
 			} else {
-
-				// Close db connction
 				$mysql_db->close();
 			}
 		}
@@ -58,7 +44,6 @@
 	        $nickname = trim($_POST["nickname"]);
 	    }
 
-		// Validate password
 	    if(empty(trim($_POST["password"]))){
 	        $password_err = "Insira uma Senha!";     
 	    } elseif(strlen(trim($_POST["password"])) < 6){
@@ -67,7 +52,6 @@
 	        $password = trim($_POST["password"]);
 	    }
     
-	    // Validate confirm password
 	    if(empty(trim($_POST["confirm_password"]))){
 	        $confirm_password_err = "Insira a confirmação da Senha!";     
 	    } else{
@@ -77,37 +61,24 @@
 	        }
 	    }
 
-	    // Check input error before inserting into database
-
 	    if (empty($username_err) && empty($password_err) && empty($confirm_err) && empty($nickname_err)) {
 
-	    	// Prepare insert statement
 			$sql = 'INSERT INTO users (username, password, nickname) VALUES (?,?,?)';
 
 			if ($stmt = $mysql_db->prepare($sql)) {
 
-				// Set parmater
 				$param_username = $username;
 				$param_password = password_hash($password, PASSWORD_DEFAULT);
 				$param_nickname = $nickname;
 
-				// Bind param variable to prepares statement
 				$stmt->bind_param('sss', $param_username, $param_password, $param_nickname);
-
-				// Attempt to execute
 				if ($stmt->execute()) {
-					// Redirect to login page
 					header('location: ./index.php');
-					// echo "Will  redirect to login page";
 				} else {
 					echo "Algo deu errado, Tente Novamente!";
 				}
-
-				// Close statement
 				$stmt->close();	
 			}
-
-			// Close connection
 			$mysql_db->close();
 	    }
 	}

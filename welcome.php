@@ -17,11 +17,21 @@
 	<title>Show do Milhão</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
 	<style>
+
+		body {
+			background-image: url(./img/Money_Cash.jpg);
+		}
         .wrapper{ 
-        	width: 1400px; 
-        	padding: 60px; 
+        	width: 1000px; 
+        	padding: 120px; 
         }
-        .wrapper h1 {text-align: center}
+        .wrapper h1 {
+			padding: 20px; 
+			text-align: center;
+			color:gold;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color:black;
+			}
         .wrapper form .form-group span {color: red;}
 	</style>
 </head>
@@ -29,13 +39,13 @@
 	<main>
 		<section class="container wrapper">
 			<div class="page-header">
-				<h1 class="display-5">Bem Vindo ao Show do Milhão <?php echo $_SESSION['nickname']; ?></h1>
+				<h1 class="display-5"><strong><strong> Bem Vindo ao Show do Milhão <?php echo $_SESSION['nickname']; ?></strong></strong></h1>
 			</div>
 
-			<a href="./Game/init.php" class="btn btn-block btn btn-outline-success">Jogar</a>
-			<a href="edit_account.php" class="btn btn-block btn-outline-warning">Editar Conta</a>
-			<a href="question_board.php" class="btn btn-block btn btn-outline-info">Painel de Perguntas</a>
-			<a href="ranking.php" class="btn btn-block btn btn btn-outline-primary" >Hall da Fama</a>
+			<a href="./Game/init.php" class="btn btn-block btn btn-success">Jogar</a>
+			<a href="edit_account.php" class="btn btn-block btn btn-warning">Editar Conta</a>
+			<a href="question_board.php" class="btn btn-block btn btn-info">Painel de Perguntas</a>
+			<a href="ranking.php" class="btn btn-block btn btn btn-primary" >Hall da Fama</a>
 			<a href="logout.php" class="btn btn-block btn-link bg-light" href="welcome.php">Deslogar</a>
 
 		</section>
