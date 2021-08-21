@@ -23,7 +23,7 @@
 			header('location: ./questions_operations/edit_quest.php');
 		}
 
-		if ($_SESSION["value"] === 'Aprovar') {
+		if ($_SESSION["value"] === 'Validar') {
 			header('location: ./questions_operations/approve_quest.php');
 		}
 
