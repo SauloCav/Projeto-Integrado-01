@@ -63,7 +63,7 @@
 				<br>
 			</div>
 
-			<table class="table" border="3"> 
+			<table class="table" border="3">
 				<thead class="thead-light">
 				<tr style="text-align: center;"> 
 						<th scope="col">Questão</th> 

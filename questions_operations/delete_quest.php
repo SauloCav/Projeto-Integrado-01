@@ -11,19 +11,16 @@
         $sqldv = "DELETE FROM denuncia_validacao WHERE id_quest = $param_id";
 
         if (mysqli_query($mysql_db, $sqldv)) {
-            session_destroy();
-        }
-        else {
-            echo "Erro ao Deletar!";
-        }
+            $sqlquests = "DELETE FROM questoes_respostas WHERE id_questao = $param_id";
 
-        $sqlquests = "DELETE FROM questoes_respostas WHERE id_questao = $param_id";
-
-        if (mysqli_query($mysql_db, $sqlquests)) {
-            session_destroy();
-            header("location: ../question_list.php");
-            exit();
-        } 
+            if (mysqli_query($mysql_db, $sqlquests)) {
+                header("location: ../question_list.php");
+                exit();
+            } 
+            else {
+                echo "Erro ao Deletar!";
+            }
+        }
         else {
             echo "Erro ao Deletar!";
         }

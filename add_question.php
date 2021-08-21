@@ -1,6 +1,6 @@
 <?php
 
-	require_once 'config/config.php';
+    require_once 'config/config.php';
 
 	$questao = $resposta_certa = $resposta_a = $resposta_b = $resposta_c = "";
 	$questao_err = $resposta_certa_err = $resposta_a_err = $resposta_b_err = $resposta_c_err = "";

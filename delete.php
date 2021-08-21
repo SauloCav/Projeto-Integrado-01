@@ -1,11 +1,6 @@
 <?php
 
     session_start();
-
-    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true){
-        header('location: index.php');
-        exit;
-    }
     
     require_once 'config/config.php';
     
@@ -16,19 +11,17 @@
         $sqlrank = "DELETE FROM ranking WHERE id_usuario = $param_id";
 
         if (mysqli_query($mysql_db, $sqlrank)) {
-            session_destroy();
-        }
-        else {
-            echo "Erro ao Deletar!";
-        }
+            $sqluser = "DELETE FROM users WHERE id_user = $param_id";
 
-        $sqluser = "DELETE FROM users WHERE id_user = $param_id";
-
-        if (mysqli_query($mysql_db, $sqluser)) {
-            session_destroy();
-            header("location: index.php");
-            exit();
-        } 
+            if (mysqli_query($mysql_db, $sqluser)) {
+                session_destroy();
+                header("location: index.php");
+                exit();
+            } 
+            else {
+                echo "Erro ao Deletar!";
+            }
+        }
         else {
             echo "Erro ao Deletar!";
         }

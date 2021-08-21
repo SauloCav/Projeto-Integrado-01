@@ -32,16 +32,30 @@
 			</div>
 
 			<?php
-				if(array_key_exists('buttom', $_POST)) {
-					$_SESSION["prize"] = 25000;
-					header('location: playerOver.php');
-				}
-				elseif (array_key_exists('buttomCorrect', $_POST)) {
-					header('location: Quest_05.php');
-				}
-				elseif (array_key_exists('parar', $_POST)) {
-					$_SESSION["prize"] = 50000;
-					header('location: playerStop.php');
+				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+					foreach ($_POST as $key => $value) {
+						$_SESSION["key"] = $key;
+						$_SESSION["value"] = $value;
+					}
+
+					if(array_key_exists('buttom', $_POST)) {
+						$_SESSION["prize"] = 25000;
+						header('location: playerOver.php');
+					}
+					elseif (array_key_exists('buttomCorrect', $_POST)) {
+						header('location: Quest_05.php');
+					}
+					elseif (array_key_exists('parar', $_POST)) {
+						$_SESSION["prize"] = 50000;
+						header('location: playerStop.php');
+					}
+
+					if ($_SESSION["value"] === 'Denunciar') {
+						$_SESSION["denounces_from_where"] = 4;
+						header('location: ../questions_operations/denounce_quest.php');
+					}
+
 				}
 			?>
 
@@ -88,6 +102,9 @@
 					if ($_SESSION["elimina_alternativas"] === 0) {
 						echo '<input type="submit" name="elimina" class="btn btn-block btn btn-outline-danger" value="Eliminar duas Alternativas">';
 					}
+
+					echo "<br/><br/>";
+					echo '<input type="submit" name='.$_SESSION["quest_1"][0].' class="btn btn-block btn btn-outline-danger" value="Denunciar">';
 
 					echo "<br/><br/><br/>";
 					echo '<input type="submit" name="parar" class="btn btn-block btn btn-outline-dark" value="Parar">';

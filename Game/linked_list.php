@@ -40,6 +40,7 @@
 	$quests = "SELECT * FROM questoes_respostas WHERE id_questao IS NOT NULL AND valida = 'v'"; 
     $ques = $mysql_db->query($quests) or die($mysql_db->error);
     $row = mysqli_fetch_all($ques);
+    
     $_SESSION["prize"] = 0;
 
     shuffle($row);
@@ -47,43 +48,43 @@
     $MyList = new LinkedList();
 
     $first = new Node();
-    $first->data = $row[$row[0][0]];
+    $first->data = $row[0];
     $first->next = null;
     $first->num = 0;
     $MyList->head = $first;
 
     $second = new Node();
-    $second->data = $row[$row[1][0]];
+    $second->data = $row[1];
     $second->next = null;
     $second->num = 1;
     $first->next = $second;
 
     $third = new Node();
-    $third->data = $row[$row[2][0]];
+    $third->data = $row[2];
     $third->next = null;
     $third->num = 2;
     $second->next = $third;
 
     $fourth = new Node();
-    $fourth->data = $row[$row[3][0]];
+    $fourth->data = $row[3];
     $fourth->next = null;
     $fourth->num = 3;
     $third->next = $fourth;
 
     $fifth = new Node();
-    $fifth->data = $row[$row[4][0]];
+    $fifth->data = $row[4];
     $fifth->next = null;
     $fifth->num = 4;
     $fourth->next = $fifth;
 
     $sixth = new Node();
-    $sixth->data = $row[$row[5][0]];
+    $sixth->data = $row[5];
     $sixth->next = null;
     $sixth->num = 5;
     $fifth->next = $sixth;
 
     $seventh = new Node();
-    $seventh->data = $row[$row[6][0]];
+    $seventh->data = $row[6];
     $seventh->next = null;
     $seventh->num = 6;
     $sixth->next = $seventh;
