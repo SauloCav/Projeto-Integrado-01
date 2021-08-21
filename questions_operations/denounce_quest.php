@@ -15,12 +15,7 @@
         	width: 1400px; 
         	padding: 60px; 
         }
-        #quest {
-            width: 1400px; 
-        	padding: 40px;
-        }
-        .wrapper h1 {text-align: center}
-        .wrapper h2 {text-align: center}
+        .wrapper h1, h2 {text-align: center}
         .wrapper form .form-group span {color: red;}
 	</style>
 </head>
@@ -33,94 +28,133 @@
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            echo "Diabo";
+            if(array_key_exists('sim', $_POST)) {
 
-            require_once '../config/config.php';
+                require_once '../config/config.php';
 
-            $param_id = $_SESSION["key"];
+                $param_id = $_SESSION["key"];
 
-            $denunciar = "SELECT qr.id_questao, qr.valida, dv.num_denuncias, dv.username_1, dv.username_2, dv.id_quest
-            FROM (questoes_respostas qr 
-            JOIN 
-            denuncia_validacao dv
-            ON 
-            dv.id_quest = qr.id_questao)
-            WHERE id_quest = $param_id";
+                $denunciar = "SELECT qr.id_questao, qr.valida, dv.num_denuncias, dv.username_1, dv.username_2, dv.id_quest
+                FROM (questoes_respostas qr 
+                JOIN 
+                denuncia_validacao dv
+                ON 
+                dv.id_quest = qr.id_questao)
+                WHERE id_quest = $param_id";
 
-            echo "Diabo1";
+                $den = $mysql_db->query($denunciar) or die($mysql_db->error);
 
-            $den = $mysql_db->query($denunciar) or die($mysql_db->error);
+                $dado = $den->fetch_array();
 
-            $dado = $den->fetch_array();
+                if ($dado[2] === '2') {
+                    if (($_SESSION['username'] != $dado[3]) && ($_SESSION['username'] != $dado[4])) {
+                        $param_num_denuncias = 0;
+                        $param_username_1 = NULL;
+                        $param_username_2 = NULL;
+                        $param_valida = 'i';
 
-            echo "Diabo2";
+                        $sqldenuncia = "UPDATE denuncia_validacao SET num_denuncias = '$param_num_denuncias', username_1 = '$param_username_1', username_2 = '$param_username_2' WHERE id_quest = '$param_id'";
+                    
+                        if($stmt = $mysql_db->prepare($sqldenuncia)){
+                            if($stmt->execute()){
 
-            if ($dado[2] === '2') {
-                echo "Diabo2.6";
-                if (($_SESSION['username'] != $dado[3]) && ($_SESSION['username'] != $dado[4])) {
-                    $param_num_denuncias = 0;
-                    $param_username_1 = NULL;
-                    $param_username_2 = NULL;
-                    $param_valida = 'i';
+                                $sql_update_valida = "UPDATE questoes_respostas SET valida = '$param_valida' WHERE id_questao = '$param_id'";
 
-                    $sqldenuncia = "UPDATE denuncia_validacao SET num_denuncias = '$param_num_denuncias', username_1 = '$param_username_1', username_2 = '$param_username_2' WHERE id_quest = '$param_id'";
-                
-                    if($stmt = $mysql_db->prepare($sqldenuncia)){
-                        if($stmt->execute()){
-
-                            $sql_update_valida = "UPDATE questoes_respostas SET valida = '$param_valida' WHERE id_questao = '$param_id'";
-
-                            if($stmt = $mysql_db->prepare($sql_update_valida)){
-                                if($stmt->execute()){
-                                    if ($_SESSION["denounces_from_where"] === 0) {
-                                        header("location: ../question_list.php");
+                                if($stmt = $mysql_db->prepare($sql_update_valida)){
+                                    if($stmt->execute()){
+                                        if ($_SESSION["denounces_from_where"] === 0) {
+                                            header("location: ../question_list.php");
+                                        }
+                                        elseif ($_SESSION["denounces_from_where"] === 1) {
+                                            header("location: ../Game/Quest_01.php");
+                                        }
+                                        elseif ($_SESSION["denounces_from_where"] === 2) {
+                                            header("location: ../Game/Quest_02.php");
+                                        }
+                                        elseif ($_SESSION["denounces_from_where"] === 3) {
+                                            header("location: ../Game/Quest_03.php");
+                                        }
+                                        elseif ($_SESSION["denounces_from_where"] === 4) {
+                                            header("location: ../Game/Quest_04.php");
+                                        }
+                                        elseif ($_SESSION["denounces_from_where"] === 5) {
+                                            header("location: ../Game/Quest_05.php");
+                                        }
+                                        elseif ($_SESSION["denounces_from_where"] === 6) {
+                                            header("location: ../Game/Quest_06.php");
+                                        }
+                                        elseif ($_SESSION["denounces_from_where"] === 7) {
+                                            header("location: ../Game/Quest_07.php");
+                                        }
+                                        
+                                        exit();
                                     }
-                                    elseif ($_SESSION["denounces_from_where"] === 1) {
-                                        header("location: ../Game/Quest_01.php");
-                                    }
-                                    elseif ($_SESSION["denounces_from_where"] === 2) {
-                                        header("location: ../Game/Quest_02.php");
-                                    }
-                                    elseif ($_SESSION["denounces_from_where"] === 3) {
-                                        header("location: ../Game/Quest_03.php");
-                                    }
-                                    elseif ($_SESSION["denounces_from_where"] === 4) {
-                                        header("location: ../Game/Quest_04.php");
-                                    }
-                                    elseif ($_SESSION["denounces_from_where"] === 5) {
-                                        header("location: ../Game/Quest_05.php");
-                                    }
-                                    elseif ($_SESSION["denounces_from_where"] === 6) {
-                                        header("location: ../Game/Quest_06.php");
-                                    }
-                                    elseif ($_SESSION["denounces_from_where"] === 7) {
-                                        header("location: ../Game/Quest_07.php");
-                                    }
-                                    
-                                    exit();
                                 }
+
+                            } else{
+                                echo "Oops! Algo deu errado, tente novamente mais tarde!";
                             }
-
-                        } else{
-                            echo "Oops! Algo deu errado, tente novamente mais tarde!";
+                            $stmt->close();
                         }
-                        $stmt->close();
+                        $mysql_db->close();
                     }
-                    $mysql_db->close();
+                    else {
+                        echo '<br/><h3>Você já denunciou essa Questão!</h3>';
+                    }
                 }
-                else {
-                    echo '<h3>Você já denunciou essa Questão!</h3>';
-                }
-            }
-            elseif ($dado[2] === '1') {
-                echo "Diabo2.3";
-                if (($_SESSION['username'] != $dado[3]) && ($_SESSION['username'] != $dado[4])) {
-                    $param_num_denuncias = 2;
-                    $param_username_2 = $_SESSION['username'];
+                elseif ($dado[2] === '1') {
+                    if (($_SESSION['username'] != $dado[3]) && ($_SESSION['username'] != $dado[4])) {
+                        $param_num_denuncias = 2;
+                        $param_username_2 = $_SESSION['username'];
 
-                    $sqldenuncia = "UPDATE denuncia_validacao SET num_denuncias = '$param_num_denuncias', username_2 = '$param_username_2' WHERE id_quest = '$param_id'";
+                        $sqldenuncia = "UPDATE denuncia_validacao SET num_denuncias = '$param_num_denuncias', username_2 = '$param_username_2' WHERE id_quest = '$param_id'";
+                    
+                        if($stmt = $mysql_db->prepare($sqldenuncia)){
+                            if($stmt->execute()){
+                                if ($_SESSION["denounces_from_where"] === 0) {
+                                    header("location: ../question_list.php");
+                                }
+                                elseif ($_SESSION["denounces_from_where"] === 1) {
+                                    header("location: ../Game/Quest_01.php");
+                                }
+                                elseif ($_SESSION["denounces_from_where"] === 2) {
+                                    header("location: ../Game/Quest_02.php");
+                                }
+                                elseif ($_SESSION["denounces_from_where"] === 3) {
+                                    header("location: ../Game/Quest_03.php");
+                                }
+                                elseif ($_SESSION["denounces_from_where"] === 4) {
+                                    header("location: ../Game/Quest_04.php");
+                                }
+                                elseif ($_SESSION["denounces_from_where"] === 5) {
+                                    header("location: ../Game/Quest_05.php");
+                                }
+                                elseif ($_SESSION["denounces_from_where"] === 6) {
+                                    header("location: ../Game/Quest_06.php");
+                                }
+                                elseif ($_SESSION["denounces_from_where"] === 7) {
+                                    header("location: ../Game/Quest_07.php");
+                                }
+                                exit();
+                            } else{
+                                echo "Oops! Algo deu errado, tente novamente mais tarde!";
+                            }
+                            $stmt->close();
+                        }
+                        $mysql_db->close();
+                    }
+                    else {
+                        echo '<br/><h3>Você já denunciou essa Questão!</h3>';
+                    }
+                }
+                elseif ($dado[2] === '0') {
+                    $param_num_denuncias = 1;
+                    $param_username_1 = $_SESSION['username'];
                 
+                    $sqldenuncia = "UPDATE denuncia_validacao SET num_denuncias = '$param_num_denuncias', username_1 = '$param_username_1' WHERE id_quest = '$param_id'";
+                    
                     if($stmt = $mysql_db->prepare($sqldenuncia)){
+
                         if($stmt->execute()){
                             if ($_SESSION["denounces_from_where"] === 0) {
                                 header("location: ../question_list.php");
@@ -154,55 +188,33 @@
                     }
                     $mysql_db->close();
                 }
-                else {
-                    echo '<h3>Você já denunciou essa Questão!</h3>';
-                }
+
             }
-            elseif ($dado[2] === '0') {
-                echo "Diabo3";
-                $param_num_denuncias = 1;
-                $param_username_1 = $_SESSION['username'];
-            
-                $sqldenuncia = "UPDATE denuncia_validacao SET num_denuncias = '$param_num_denuncias', username_1 = '$param_username_1' WHERE id_quest = '$param_id'";
-
-                echo "Diabo4";
-                
-                if($stmt = $mysql_db->prepare($sqldenuncia)){
-
-                    echo "Diabo5";
-                    if($stmt->execute()){
-                        echo "Diabo6";
-                        if ($_SESSION["denounces_from_where"] === 0) {
-                            header("location: ../question_list.php");
-                        }
-                        elseif ($_SESSION["denounces_from_where"] === 1) {
-                            header("location: ../Game/Quest_01.php");
-                        }
-                        elseif ($_SESSION["denounces_from_where"] === 2) {
-                            header("location: ../Game/Quest_02.php");
-                        }
-                        elseif ($_SESSION["denounces_from_where"] === 3) {
-                            header("location: ../Game/Quest_03.php");
-                        }
-                        elseif ($_SESSION["denounces_from_where"] === 4) {
-                            header("location: ../Game/Quest_04.php");
-                        }
-                        elseif ($_SESSION["denounces_from_where"] === 5) {
-                            header("location: ../Game/Quest_05.php");
-                        }
-                        elseif ($_SESSION["denounces_from_where"] === 6) {
-                            header("location: ../Game/Quest_06.php");
-                        }
-                        elseif ($_SESSION["denounces_from_where"] === 7) {
-                            header("location: ../Game/Quest_07.php");
-                        }
-                        exit();
-                    } else{
-                        echo "Oops! Algo deu errado, tente novamente mais tarde!";
-                    }
-                    $stmt->close();
+            elseif(array_key_exists('nao', $_POST)) {
+                if ($_SESSION["denounces_from_where"] === 0) {
+                    header("location: ../question_list.php");
                 }
-                $mysql_db->close();
+                elseif ($_SESSION["denounces_from_where"] === 1) {
+                    header("location: ../Game/Quest_01.php");
+                }
+                elseif ($_SESSION["denounces_from_where"] === 2) {
+                    header("location: ../Game/Quest_02.php");
+                }
+                elseif ($_SESSION["denounces_from_where"] === 3) {
+                    header("location: ../Game/Quest_03.php");
+                }
+                elseif ($_SESSION["denounces_from_where"] === 4) {
+                    header("location: ../Game/Quest_04.php");
+                }
+                elseif ($_SESSION["denounces_from_where"] === 5) {
+                    header("location: ../Game/Quest_05.php");
+                }
+                elseif ($_SESSION["denounces_from_where"] === 6) {
+                    header("location: ../Game/Quest_06.php");
+                }
+                elseif ($_SESSION["denounces_from_where"] === 7) {
+                    header("location: ../Game/Quest_07.php");
+                }
             }
 
 	    }
@@ -232,9 +244,8 @@
 
             echo '<form method="post">';
             echo '<input type="submit" name="sim" class="btn btn-block btn btn-outline-dark" value="Sim"><br>';
+            echo '<input type="submit" name="nao" class="btn btn-block btn btn-outline-dark" value="Nao">';
             echo '</form>';
-
-            echo '<a class="btn btn-block btn btn-outline-dark" href="../question_list.php">Nao</a>';
 
         ?>
 

@@ -106,7 +106,7 @@
 					}
 
 					echo "<br/><br/>";
-					echo '<input type="submit" name='.$_SESSION["quest_1"][0].' class="btn btn-block btn btn-outline-danger" value="Denunciar">';
+					echo '<input type="submit" name='.$_SESSION["quest_7"][0].' class="btn btn-block btn btn-outline-danger" value="Denunciar">';
 
 					echo "<br/><br/><br/>";
 					echo '<input type="submit" name="parar" class="btn btn-block btn btn-outline-dark" value="Parar">';
