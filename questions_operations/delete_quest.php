@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-
+    
 	require_once '../config/config.php';
 
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -52,11 +52,12 @@
 	<main>
 		<section class="container wrapper"> <br>
 
+        <h2>Deseja realmente deletar esta questão?</h2>
+
         <?php
 
             require_once '../config/config.php';
 
-            echo '<h2 class="display-5">Deseja realmente deletar esta questão?</h2>';
 
             $param_key = $_SESSION["key"];
             
@@ -67,7 +68,7 @@
 
             echo "<div id='quest'>";
 
-                echo "<br><h3><strong> Pergunta: " . $dado['pergunta'] . "</strong></h3>";
+                echo "<h3><strong> Pergunta: " . $dado['pergunta'] . "</strong></h3>";
                 echo "<h3><strong> Resposta correta: " . $dado['resp_correta'] . "</strong></h3>"; 
                 echo "<h3><strong> Resposta incorreta 1: " . $dado['resp_a'] . "</strong></h3>";
                 echo "<h3><strong> Resposta incorreta 2: " . $dado['resp_b'] . "</strong></h3>";
