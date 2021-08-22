@@ -16,10 +16,11 @@
 	<meta charset="UTF-8">
 	<title>Show do Milhão</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
+	<link rel="shortcut icon" href="./img/12130brain_109577.ico" />
 	<style>
 
 		body {
-			background-image: url(./img/Money_Cash.jpg);
+			background-image: url(./img/Money_Cash-min.jpg);
 		}
         .wrapper{ 
         	width: 1000px; 

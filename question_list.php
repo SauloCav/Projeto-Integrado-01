@@ -18,19 +18,15 @@
 			$_SESSION["key"] = $key;
 			$_SESSION["value"] = $value;
 		}
-
 		if ($_SESSION["value"] === 'Editar') {
 			header('location: ./questions_operations/edit_quest.php');
 		}
-
 		if ($_SESSION["value"] === 'Validar') {
 			header('location: ./questions_operations/approve_quest.php');
 		}
-
 		if ($_SESSION["value"] === 'Excluir') {
 			header('location: ./questions_operations/delete_quest.php');
 		}
-
 		if ($_SESSION["value"] === 'Denunciar') {
 			$_SESSION["denounces_from_where"] = 0;
 			header('location: ./questions_operations/denounce_quest.php');
@@ -45,6 +41,7 @@
 	<meta charset="UTF-8">
 	<title>Lista de Perguntas</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
+	<link rel="shortcut icon" href="./img/12130brain_109577.ico" />
 	<style>
         .wrapper{ 
         	width: 1800px; 
