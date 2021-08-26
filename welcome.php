@@ -14,7 +14,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Show do Milhão</title>
+	<title>Quem Quer Dinheiro</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
 	<link rel="shortcut icon" href="./img/12130brain_109577.ico" />
 	<style>
@@ -23,7 +23,7 @@
 			background-image: url(./img/Money_Cash-min.jpg);
 		}
         .wrapper{ 
-        	width: 1000px; 
+        	width: 800px; 
         	padding: 120px; 
         }
         .wrapper h1 {
@@ -32,7 +32,7 @@
 			color:gold;
 			-webkit-text-stroke-width: 1px;
 			-webkit-text-stroke-color:black;
-			}
+		}
         .wrapper form .form-group span {color: red;}
 	</style>
 </head>
@@ -40,7 +40,7 @@
 	<main>
 		<section class="container wrapper">
 			<div class="page-header">
-				<h1 class="display-5"><strong><strong> Bem Vindo ao Show do Milhão <?php echo $_SESSION['nickname']; ?></strong></strong></h1>
+				<h1 class="display-5"><strong><strong>Bem Vindo ao "Quem Quer Dinheiro" <?php echo $_SESSION['nickname']; ?></strong></strong></h1>
 			</div>
 
 			<a href="./Game/init.php" class="btn btn-block btn btn-success">Jogar</a>

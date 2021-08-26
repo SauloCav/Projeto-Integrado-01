@@ -25,8 +25,8 @@
 	<link rel="shortcut icon" href="../img/12130brain_109577.ico" />
 	<style>
         .wrapper{ 
-        	width: 1400px; 
-        	padding: 60px; 
+        	width: 800px; 
+        	padding: 140px; 
         }
         .wrapper h1 {text-align: center}
         .wrapper form .form-group span {color: red;}
@@ -36,7 +36,7 @@
 	<main>
 		<section class="container wrapper">
 			<div class="page-header">
-				<h1 class="display-5">Está preparado <?php echo $_SESSION['nickname']; ?>?</h1>
+				<h1 class="display-5">Está preparado <?php echo $_SESSION['nickname']; ?>?</h1> <br><br>
 			</div>
 
 			<a href="Quest_01.php" class="btn btn-block btn btn-outline-success">Iniciar</a>

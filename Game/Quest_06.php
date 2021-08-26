@@ -101,7 +101,7 @@
 					}
 
 					if ($_SESSION["elimina_alternativas"] === 0) {
-						echo '<input type="submit" name="elimina" class="btn btn-block btn btn-outline-danger" value="Eliminar duas Alternativas">';
+						echo '<input type="submit" name="elimina" class="btn btn-block btn-outline-warning"value="Eliminar duas Alternativas">';
 					}
 
 					echo "<br/><br/>";
