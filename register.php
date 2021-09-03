@@ -72,12 +72,27 @@
 				$param_nickname = $nickname;
 
 				$stmt->bind_param('sss', $param_username, $param_password, $param_nickname);
+				echo "Diabo2!";
+
 				if ($stmt->execute()) {
-					header('location: ./index.php');
-				} else {
-					echo "Algo deu errado, Tente Novamente!";
+					echo "Diabo3!";
+
+					$param_id_stats = mysqli_insert_id($mysql_db);
+		
+					$sqlStats = "INSERT INTO stats (n_partidas_jogadas, n_tot_perg_resp, premio_total, n_util_eli_duas_altern, n_derr_erro, n_derr_parada, id_user_stats) 
+					VALUES(0, 0, 0, 0, 0, 0, '$param_id_stats')";
+							
+					if ($stmt = $mysql_db->prepare($sqlStats)) {
+						echo "Diabo4!";
+						if ($stmt->execute()) {
+							header('location: ./index.php');
+						} 
+						else {
+							echo "Algo deu errado, Tente Novamente!";
+						}
+						$stmt->close();	
+					}
 				}
-				$stmt->close();	
 			}
 			$mysql_db->close();
 	    }

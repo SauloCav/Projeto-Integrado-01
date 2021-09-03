@@ -1,5 +1,7 @@
 create database quizGame;
 
+drop database quizGame;
+
 CREATE TABLE users (
     id_user INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -27,6 +29,18 @@ CREATE TABLE denuncia_validacao (
 	FOREIGN KEY(id_quest) references questoes_respostas(id_questao)
 );
 
+CREATE TABLE stats (
+	id_estats INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    n_partidas_jogadas INT NOT NULL,
+	n_tot_perg_resp INT NOT NULL,
+	premio_total INT NOT NULL,
+	n_util_eli_duas_altern INT NOT NULL,
+    n_derr_erro INT NOT NULL,
+	n_derr_parada INT NOT NULL,
+    id_user_stats INT NOT NULL,
+	FOREIGN KEY(id_user_stats) references users(id_user)
+);
+
 CREATE TABLE ranking (
     id_ranking INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     pontuacao REAL NOT NULL,
@@ -39,5 +53,7 @@ select *from users;
 select *from questoes_respostas;
 
 select *from denuncia_validacao;
+
+select *from stats;
 
 select *from ranking;
