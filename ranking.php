@@ -25,8 +25,8 @@
     <link rel="shortcut icon" href="./img/12130brain_109577.ico" />
 	<style>
         .wrapper{ 
-        	width: 850px; 
-        	padding: 20px; 
+        	width: 1200px; 
+        	padding: 100px;  
         }
         .wrapper h1 {text-align: center}
         .wrapper form .form-group span {color: red;}

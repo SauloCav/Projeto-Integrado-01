@@ -14,14 +14,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hall da Fama</title>
+	<title>Stats</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-qdQEsAI45WFCO5QwXBelBe1rR9Nwiss4rGEqiszC+9olH1ScrLrMQr1KmDR964uZ" crossorigin="anonymous">
     <link rel="shortcut icon" href="./img/12130brain_109577.ico" />
 	<style>
         .wrapper{ 
-        	width: 850px; 
-        	padding: 20px; 
+        	width: 1400px; 
+        	padding: 100px; 
         }
         .wrapper h1 {text-align: center}
         .wrapper form .form-group span {color: red;}
@@ -30,7 +30,7 @@
 <body>
 	<main>
 		<section class="container wrapper">
-				<h1 class="display-5">Stats</h1>
+            <h1 class="display-5"><strong>Stats de <?php echo $_SESSION['nickname']; ?></strong></h1>
                 <br>
 
                 <?php $pos = 1; ?>

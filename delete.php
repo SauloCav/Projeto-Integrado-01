@@ -40,7 +40,7 @@
     <style type="text/css">
         .wrapper{ 
             width: 500px; 
-        	padding: 20px;  
+        	padding: 80px;  
         }
         .wrapper h2 {text-align: center}
         .wrapper form .form-group span {color: red;}

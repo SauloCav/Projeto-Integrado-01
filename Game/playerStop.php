@@ -15,17 +15,40 @@
 
             if ($stmt->execute()) {
 
-                if ($stmt = $mysql_db->prepare($sql)) {
-                    if(array_key_exists('reiniciar', $_POST)){
-                        header('location: init.php');
-                    }
-                    if(array_key_exists('sair', $_POST)){
-                        header('location: ../welcome.php');
-                    }
-                }   
-                else {
-                    echo "Algo deu errado, Tente Novamente!";
+                $param_id = $_SESSION['id_user'];
+
+                $consulta = "SELECT * FROM stats WHERE id_user_stats = '$param_id'";
+                $cons = $mysql_db->query($consulta) or die($mysql_db->error);
+                $dado = $cons->fetch_array();
+
+                $param_n_partidas_jogadas = $dado['n_partidas_jogadas'] + 1;
+                $param_n_tot_perg_resp = $dado['n_tot_perg_resp'] + $_SESSION["n_respostas"];
+                if($_SESSION["elimina_alternativas"] === 1){
+                    $param_n_util_eli_duas_altern = $dado['n_util_eli_duas_altern'] + 1;
                 }
+                else{
+                    $param_n_util_eli_duas_altern = $dado['n_util_eli_duas_altern'];
+                }
+                $param_n_derr_parada = $dado['n_derr_parada'] + 1;
+                $param_premio_total = $dado['premio_total'] + $_SESSION["prize"];
+    
+                $sqlStats = "UPDATE stats SET n_partidas_jogadas = '$param_n_partidas_jogadas', n_tot_perg_resp = '$param_n_tot_perg_resp', n_util_eli_duas_altern = '$param_n_util_eli_duas_altern', n_derr_parada = '$param_n_derr_parada', premio_total = '$param_premio_total' 
+                WHERE id_user_stats = '$param_id'";
+                
+                if($stmt = $mysql_db->prepare($sqlStats)){  
+                    if($stmt->execute()){
+                        if(array_key_exists('reiniciar', $_POST)){
+                            header('location: init.php');
+                        }
+                        if(array_key_exists('sair', $_POST)){
+                            header('location: ../welcome.php');
+                        }
+                    }
+                    else {
+                        echo "Algo deu errado, Tente Novamente!";
+                    }
+                }
+
 
             } 
             else {

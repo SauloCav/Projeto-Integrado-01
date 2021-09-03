@@ -6,7 +6,7 @@
 	require_once 'linked_list.php';
 
 	$_SESSION["elimina_alternativas"] = 0;
-	$dado['n_tot_perg_resp'] = 0;
+	$_SESSION['n_respostas'] = 0;
 	$_SESSION["quest_1"] = $MyList->findObject(0);
 	$_SESSION["quest_2"] = $MyList->findObject(1);
 	$_SESSION["quest_3"] = $MyList->findObject(2);

@@ -16,7 +16,7 @@
 	<style>
         .wrapper{ 
         	width: 1400px; 
-        	padding: 60px; 
+        	padding: 90px; 
         }
         .wrapper h1 {text-align: center}
         .wrapper form .form-group span {color: red;}
