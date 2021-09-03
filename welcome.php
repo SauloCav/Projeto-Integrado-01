@@ -47,6 +47,7 @@
 			<a href="edit_account.php" class="btn btn-block btn btn-warning">Editar Conta</a>
 			<a href="question_board.php" class="btn btn-block btn btn-info">Painel de Perguntas</a>
 			<a href="ranking.php" class="btn btn-block btn btn btn-primary" >Hall da Fama</a>
+			<a href="stats.php" class="btn btn-block btn btn-dark">Visualizar Stats</a>
 			<a href="logout.php" class="btn btn-block btn-link bg-light" href="welcome.php">Deslogar</a>
 
 		</section>
