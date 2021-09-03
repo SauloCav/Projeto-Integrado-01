@@ -68,6 +68,8 @@
 
 				<?php
 
+					$_SESSION['n_respostas'] = 6;
+
 					if (array_key_exists('elimina', $_POST)) {
 
 						$_SESSION["elimina_alternativas"] = 1;

@@ -6,7 +6,7 @@
 
     $param_id = $_SESSION['id_user'];
 
-	$consulta = "SELECT * FROM stats WHERE id_user_stats = $param_id";
+	$consulta = "SELECT * FROM stats WHERE id_user_stats = '$param_id'";
     $cons = $mysql_db->query($consulta) or die($mysql_db->error);
 
 ?>
