@@ -1,4 +1,4 @@
-# QuizGame com PHP
+# QuizGame-PHP
 
 Jogo de perguntas e respostas onde o conteúdo é gerenciado pela comunidade de jogadores.
 
