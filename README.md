@@ -2,4 +2,4 @@
 
 Jogo de perguntas e respostas onde o conteúdo é gerenciado pela comunidade de jogadores.
 
-Trabalho desenvolvido na disciplina Projeto Integrador I.
+Trabalho desenvolvido na disciplina: Projeto Integrador I.
