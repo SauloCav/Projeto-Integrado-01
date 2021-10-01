@@ -1,5 +1,3 @@
 # QuizGame-PHP
 
-Jogo de perguntas e respostas onde o conteúdo é gerenciado pela comunidade de jogadores.
-
-Trabalho desenvolvido na disciplina: Projeto Integrador I.
+A quiz game where the content is managed by the community of players.
